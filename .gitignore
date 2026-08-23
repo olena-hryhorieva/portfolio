@@ -1,0 +1,25 @@
+# dependencies and local caches
+node_modules/
+.vite/
+.wrangler/
+
+# temporary review artifacts
+tmp/
+output/
+
+# unused starter files retained only in the local working folder
+.openai/
+app/
+db/
+drizzle/
+examples/
+public/
+tests/
+worker/
+drizzle.config.ts
+next-env.d.ts
+next.config.ts
+
+# system files
+.DS_Store
+Thumbs.db
