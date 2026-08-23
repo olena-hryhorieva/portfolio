@@ -4,7 +4,7 @@ Public portfolio website for Olena Hryhorieva, Furniture & Object Concept Design
 
 The site presents selected furniture, lighting, and human-centered object concepts, including hand sketches, an introductory Blender study, and implemented pieces. A separate fashion-styling practice is acknowledged as visual background and shared directly on request.
 
-Live site: [alenka-ai.github.io](https://alenka-ai.github.io/)
+Live site: [alenka-ai.github.io/portfolio](https://alenka-ai.github.io/portfolio/)
 
 ## Local development
 
