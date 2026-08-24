@@ -8,34 +8,11 @@ type Language = "uk" | "en";
 const base = import.meta.env.BASE_URL;
 const asset = (path: string) => `${base}${path}`;
 
-const projectVisuals = [
-  {
-    image: "images/foldable-dining-module.jpg",
-    featured: true,
-  },
-  {
-    image: "images/sculptural-armchair.jpg",
-  },
-  {
-    image: "images/biomorphic-table.jpg",
-  },
-  {
-    image: "images/biophilic-study-pods.jpg",
-    featured: true,
-  },
-  {
-    image: "images/entryway-console.jpg",
-  },
-  {
-    image: "images/upcycled-floor-lamp.jpg",
-  },
-];
-
 const translations = {
   uk: {
-    metaTitle: "Олена Григор’єва - концепт-дизайнер меблів і предметів інтер’єру та побуту",
+    metaTitle: "Олена Григор’єва - концепт-дизайнер меблів, предметів інтер’єру та побуту",
     metaDescription:
-      "Олена Григор’єва - концепт-дизайнер меблів і предметів інтер’єру та побуту. Авторські концепції, 3D-опрацювання та реалізовані об’єкти.",
+      "Олена Григор’єва - концепт-дизайнер меблів, предметів інтер’єру та побуту. Авторські концепції, 3D-опрацювання та реалізовані об’єкти.",
     languageLabel: "Оберіть мову",
     homeLabel: "Олена Григор’єва - головна сторінка",
     nav: {
@@ -48,7 +25,7 @@ const translations = {
       eyebrow: "Меблі / Предмети / Візуальний напрям",
       firstName: "Олена",
       lastName: "Григор’єва",
-      role: "Концепт-дизайнер меблів і предметів інтер’єру та побуту",
+      role: "Концепт-дизайнер меблів, предметів інтер’єру та побуту",
       intro:
         "Досліджую меблі й повсякденні предмети через форму, силует, ергономіку та культурні образи - від ескізів від руки до 3D-опрацювань і окремих реалізованих об’єктів.",
       primaryCta: "Переглянути вибрані роботи",
@@ -73,49 +50,6 @@ const translations = {
       openStylingPdf: "Відкрити портфоліо стилістки",
       downloadStylingPdf: "Завантажити PDF",
     },
-    work: {
-      title: "Форма, що має сенс",
-      note:
-        "Поточне портфоліо поєднує авторські концептуальні ескізи, 3D-опрацювання у Blender і реалізовані рішення. Стадію кожного проєкту позначено чітко.",
-    },
-    projects: [
-      {
-        title: "Складаний обідній модуль",
-        category: "Рішення для компактного простору",
-        status: "Реалізовано",
-        alt: "Реалізований складаний обідній модуль в інтер’єрі квартири",
-      },
-      {
-        title: "Скульптурне крісло",
-        category: "Дослідження форми й об’єму",
-        status: "Опрацювання концепції",
-        alt: "Скульптурне м’яке крісло, змодельоване у Blender",
-      },
-      {
-        title: "Біоморфний бетонний стіл",
-        category: "Концепція скульптурних меблів",
-        status: "Концептуальний ескіз",
-        alt: "Концепція біоморфного бетонного столу з декоративною акцентною вставкою",
-      },
-      {
-        title: "Біофільні навчальні модулі",
-        category: "Система для навчального середовища",
-        status: "Концептуальний ескіз",
-        alt: "Модульні навчальні місця з інтегрованою гідропонною системою",
-      },
-      {
-        title: "Скульптурна консоль для передпокою",
-        category: "Зберігання та щоденний ритуал",
-        status: "Концептуальний ескіз",
-        alt: "Концепція консолі для передпокою зі зберіганням ключів і взуття",
-      },
-      {
-        title: "Торшер з апсайклінгу",
-        category: "Освітлення й повторне використання матеріалів",
-        status: "Реалізовано",
-        alt: "Реалізований торшер, створений через переосмислення наявного предмета",
-      },
-    ],
     approach: {
       eyebrow: "Метод роботи",
       title: "Від спостереження до предмета",
@@ -212,49 +146,6 @@ const translations = {
       openStylingPdf: "Open styling portfolio",
       downloadStylingPdf: "Download PDF",
     },
-    work: {
-      title: "Form with a reason",
-      note:
-        "Current work combines original concept sketches, 3D development in Blender, and implemented solutions. Each status is labeled clearly.",
-    },
-    projects: [
-      {
-        title: "Foldable Dining Module",
-        category: "Compact-space solution",
-        status: "Implemented",
-        alt: "Implemented foldable dining module shown in an apartment interior",
-      },
-      {
-        title: "Sculptural Armchair",
-        category: "Form and volume study",
-        status: "Concept development",
-        alt: "Sculptural upholstered armchair modeled in Blender",
-      },
-      {
-        title: "Biomorphic Concrete Table",
-        category: "Sculptural furniture concept",
-        status: "Concept sketch",
-        alt: "Biomorphic concrete table concept with a decorative accent insert",
-      },
-      {
-        title: "Biophilic Study Pods",
-        category: "Learning environment system",
-        status: "Concept sketch",
-        alt: "Modular study pods with an integrated hydroponic planting system",
-      },
-      {
-        title: "Sculptural Entryway Console",
-        category: "Storage and daily ritual",
-        status: "Concept sketch",
-        alt: "Entryway console concept with integrated key and shoe storage",
-      },
-      {
-        title: "Upcycled Floor Lamp",
-        category: "Lighting and material reuse",
-        status: "Implemented",
-        alt: "Implemented floor lamp created by transforming an existing object",
-      },
-    ],
     approach: {
       eyebrow: "Working method",
       title: "From observation to object",
@@ -328,11 +219,6 @@ function Arrow({ down = false }: { down?: boolean }) {
 function App() {
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const t = translations[language];
-  const projects = projectVisuals.map((visual, index) => ({
-    ...visual,
-    ...t.projects[index],
-  }));
-
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = t.metaTitle;
@@ -354,7 +240,7 @@ function App() {
         </a>
         <div className="header-controls">
           <nav aria-label={language === "uk" ? "Основна навігація" : "Primary navigation"}>
-            <a href="#work">{t.nav.work}</a>
+            <a href="#portfolio">{t.nav.work}</a>
             <a href="#approach">{t.nav.approach}</a>
             <a href="#about">{t.nav.about}</a>
             <a href="#contact">{t.nav.contact}</a>
@@ -390,7 +276,7 @@ function App() {
             <h2>{t.hero.role}</h2>
             <p className="hero-intro">{t.hero.intro}</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="#work">
+              <a className="button button-dark" href="#portfolio">
                 {t.hero.primaryCta} <Arrow down />
               </a>
               <a className="text-link" href="#about">
@@ -410,7 +296,7 @@ function App() {
           </figure>
         </section>
 
-        <section className="portfolio-paths section-shell" aria-labelledby="portfolio-title">
+        <section className="portfolio-paths section-shell" id="portfolio" aria-labelledby="portfolio-title">
           <div className="section-heading">
             <p className="eyebrow">{t.portfolio.eyebrow}</p>
             <h2 id="portfolio-title">{t.portfolio.title}</h2>
@@ -466,36 +352,6 @@ function App() {
                 </a>
               </div>
             </article>
-          </div>
-        </section>
-
-        <section className="selected-work section-shell" id="work" aria-labelledby="work-title">
-          <div className="section-heading heading-row">
-            <div>
-              <h2 id="work-title">{t.work.title}</h2>
-            </div>
-            <p className="heading-note">{t.work.note}</p>
-          </div>
-
-          <div className="project-grid">
-            {projects.map((project, index) => (
-              <article
-                className={`project-card${project.featured ? " project-card-wide" : ""}`}
-                key={project.image}
-              >
-                <div className="project-image">
-                  <img src={asset(project.image)} alt={project.alt} loading="lazy" />
-                  <span className="status">{project.status}</span>
-                </div>
-                <div className="project-meta">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <div>
-                    <h3>{project.title}</h3>
-                    <p>{project.category}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
           </div>
         </section>
 
