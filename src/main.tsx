@@ -40,14 +40,14 @@ const translations = {
       furnitureIndex: "01 / Основний напрям",
       furnitureTitle: "Концепт-дизайн меблів і предметів",
       furnitureDescription:
-        "Скульптурні меблі, рішення для компактного житла, освітлення й людиноцентричні предмети, досліджені через ескізи, матеріали, 3D-моделювання та реалізовані проєкти.",
-      openPdf: "Відкрити PDF-портфоліо",
+        "Авторські концепції меблів і предметів для житлових просторів різного типу та різних сценаріїв повсякденного використання. У фокусі: виразна форма, ергономіка, матеріали, 3D-опрацювання й окремі реалізовані рішення.",
+      openPdf: "Відкрити портфоліо меблів і предметів (PDF)",
       downloadPdf: "Завантажити PDF",
       stylingIndex: "02 / Візуальний досвід",
-      stylingTitle: "Портфоліо стилістки",
+      stylingTitle: "Мода, стилістика образів і візуальні концепції",
       stylingDescription:
-        "Добірка робіт зі стилістики образів, роботи з кольором, фактурою та візуальною композицією. Цей досвід сьогодні впливає на мій підхід до матеріалів, предметів і атмосфери простору.",
-      openStylingPdf: "Відкрити портфоліо стилістки",
+        "Добірка редакційних зйомок, персональних образів, візуальних перевтілень і роботи для телебачення. Досвід із силуетом, кольором і фактурою поглиблює мій підхід до матеріалів, предметів та атмосфери інтер’єру.",
+      openStylingPdf: "Відкрити портфоліо зі стилістики та моди (PDF)",
       downloadStylingPdf: "Завантажити PDF",
     },
     approach: {
@@ -136,14 +136,14 @@ const translations = {
       furnitureIndex: "01 / Primary practice",
       furnitureTitle: "Furniture & Object Concept Design",
       furnitureDescription:
-        "Sculptural furniture, compact-living solutions, lighting, and human-centered objects explored through sketching, materials, 3D development, and implemented work.",
-      openPdf: "Open portfolio PDF",
+        "Original furniture and object concepts for different types of homes and everyday-use scenarios. The work focuses on expressive form, ergonomics, materials, 3D development, and selected implemented solutions.",
+      openPdf: "Open furniture & object portfolio (PDF)",
       downloadPdf: "Download PDF",
       stylingIndex: "02 / Visual background",
-      stylingTitle: "Styling Portfolio",
+      stylingTitle: "Fashion Styling & Visual Direction",
       stylingDescription:
-        "A selection of image styling work focused on color, texture, proportion, and visual composition. This experience now informs how I think about materials, objects, and atmosphere.",
-      openStylingPdf: "Open styling portfolio",
+        "A selection of editorial shoots, personal styling, visual transformations, and work for television. Experience with silhouette, color, and texture continues to inform my approach to materials, objects, and interior atmosphere.",
+      openStylingPdf: "Open fashion styling portfolio (PDF)",
       downloadStylingPdf: "Download PDF",
     },
     approach: {
