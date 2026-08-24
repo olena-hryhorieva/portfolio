@@ -33,9 +33,9 @@ const projectVisuals = [
 
 const translations = {
   uk: {
-    metaTitle: "Олена Григор’єва - концепт-дизайнерка меблів і предметів",
+    metaTitle: "Олена Григор’єва - концепт-дизайнер меблів і предметів інтер’єру та побуту",
     metaDescription:
-      "Олена Григор’єва - концепт-дизайнерка меблів і предметів. Вибрані концепції, 3D-опрацювання та реалізовані об’єкти.",
+      "Олена Григор’єва - концепт-дизайнер меблів і предметів інтер’єру та побуту. Авторські концепції, 3D-опрацювання та реалізовані об’єкти.",
     languageLabel: "Оберіть мову",
     homeLabel: "Олена Григор’єва - головна сторінка",
     nav: {
@@ -48,13 +48,13 @@ const translations = {
       eyebrow: "Меблі / Предмети / Візуальний напрям",
       firstName: "Олена",
       lastName: "Григор’єва",
-      role: "Концепт-дизайнерка меблів і предметів",
+      role: "Концепт-дизайнер меблів і предметів інтер’єру та побуту",
       intro:
         "Досліджую меблі й повсякденні предмети через форму, силует, ергономіку та культурні образи - від ескізів від руки до 3D-опрацювань і окремих реалізованих об’єктів.",
       primaryCta: "Переглянути вибрані роботи",
       secondaryCta: "Про мою практику",
       figureTitle: "01 / Скульптурне крісло",
-      figureStatus: "3D-опрацювання концепції",
+      figureStatus: "Опрацювання концепції",
       figureAlt: "Скульптурне крісло - 3D-опрацювання концепції Олени Григор’євої у Blender",
     },
     portfolio: {
@@ -74,7 +74,6 @@ const translations = {
       downloadStylingPdf: "Завантажити PDF",
     },
     work: {
-      eyebrow: "Концепт-дизайнер меблів і предметів інтер’єру та побуту",
       title: "Форма, що має сенс",
       note:
         "Поточне портфоліо поєднує авторські концептуальні ескізи, 3D-опрацювання у Blender і реалізовані рішення. Стадію кожного проєкту позначено чітко.",
@@ -89,7 +88,7 @@ const translations = {
       {
         title: "Скульптурне крісло",
         category: "Дослідження форми й об’єму",
-        status: "3D-опрацювання концепції",
+        status: "Опрацювання концепції",
         alt: "Скульптурне м’яке крісло, змодельоване у Blender",
       },
       {
@@ -157,14 +156,14 @@ const translations = {
         "Ескізування від руки",
         "Дослідження матеріалів і кольору",
         "Просторове мислення",
-        "Blender - 3D-опрацювання концепцій",
+        "3D-опрацювання концепцій",
       ],
     },
     contact: {
       eyebrow: "Контакти",
-      title: "Перетворімо ідею на продуманий предмет.",
+      title: "Від ідеї до продуманого предметного рішення.",
       description:
-        "Відкрита до різних форматів співпраці у сфері концептуального дизайну меблів і предметів - проєктної роботи, роботи в команді та творчих партнерств. Наразі перебуваю у Грузії та працюю дистанційно.",
+        "Відкрита до різних форматів співпраці у сфері концептуального дизайну меблів і предметів: проєктної роботи, участі в команді та творчих партнерств.",
     },
     footer: {
       copyright: "© 2026 Олена Григор’єва",
@@ -173,9 +172,9 @@ const translations = {
     },
   },
   en: {
-    metaTitle: "Olena Hryhorieva - Furniture & Object Concept Designer",
+    metaTitle: "Olena Hryhorieva - Concept Designer for Furniture, Interior & Everyday Objects",
     metaDescription:
-      "Olena Hryhorieva - furniture and object concept designer. Selected concepts, 3D development, and implemented objects.",
+      "Olena Hryhorieva - concept designer for furniture, interior and everyday objects. Selected concepts, 3D development, and implemented objects.",
     languageLabel: "Choose language",
     homeLabel: "Olena Hryhorieva - home",
     nav: {
@@ -188,13 +187,13 @@ const translations = {
       eyebrow: "Furniture / Objects / Visual Direction",
       firstName: "Olena",
       lastName: "Hryhorieva",
-      role: "Furniture & Object Concept Designer",
+      role: "Concept Designer for Furniture, Interior & Everyday Objects",
       intro:
         "I explore furniture and everyday objects through form, silhouette, ergonomics, and cultural research - from hand-drawn concepts to 3D development and selected implemented pieces.",
       primaryCta: "View selected work",
       secondaryCta: "About my practice",
       figureTitle: "01 / Sculptural Armchair",
-      figureStatus: "3D concept development",
+      figureStatus: "Concept development",
       figureAlt: "Sculptural armchair - 3D concept development by Olena Hryhorieva in Blender",
     },
     portfolio: {
@@ -214,7 +213,6 @@ const translations = {
       downloadStylingPdf: "Download PDF",
     },
     work: {
-      eyebrow: "Concept Designer for Furniture, Interior & Everyday Objects",
       title: "Form with a reason",
       note:
         "Current work combines original concept sketches, 3D development in Blender, and implemented solutions. Each status is labeled clearly.",
@@ -229,7 +227,7 @@ const translations = {
       {
         title: "Sculptural Armchair",
         category: "Form and volume study",
-        status: "3D concept development",
+        status: "Concept development",
         alt: "Sculptural upholstered armchair modeled in Blender",
       },
       {
@@ -297,14 +295,14 @@ const translations = {
         "Hand sketching",
         "Material & color research",
         "Spatial problem solving",
-        "Blender - 3D concept development",
+        "3D concept development",
       ],
     },
     contact: {
       eyebrow: "Contact",
-      title: "Let’s develop an idea into a thoughtful object.",
+      title: "From an idea to a thoughtful object.",
       description:
-        "I am open to different forms of collaboration in furniture and object concept design, including project-based work, team roles, and creative partnerships. I am currently based in Georgia and work remotely.",
+        "I am open to different forms of collaboration in furniture and object concept design, including project-based work, team participation, and creative partnerships.",
     },
     footer: {
       copyright: "© 2026 Olena Hryhorieva",
@@ -474,7 +472,6 @@ function App() {
         <section className="selected-work section-shell" id="work" aria-labelledby="work-title">
           <div className="section-heading heading-row">
             <div>
-              <p className="eyebrow">{t.work.eyebrow}</p>
               <h2 id="work-title">{t.work.title}</h2>
             </div>
             <p className="heading-note">{t.work.note}</p>

@@ -127,6 +127,7 @@ nav a:focus-visible,
   font-style: italic;
   font-weight: 500;
   line-height: 1.1;
+  text-wrap: balance;
 }
 
 .hero-intro {
@@ -472,6 +473,7 @@ nav a:focus-visible,
 .contact h2 {
   max-width: 900px;
   margin-inline: auto;
+  text-wrap: balance;
 }
 
 .contact > p:not(.eyebrow) {
