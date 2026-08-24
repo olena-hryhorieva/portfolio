@@ -35,7 +35,7 @@ const translations = {
   uk: {
     metaTitle: "Олена Григор’єва - концепт-дизайнерка меблів і предметів",
     metaDescription:
-      "Олена Григор’єва - концепт-дизайнерка меблів і предметів. Вибрані концепції, початкові 3D-роботи та реалізовані об’єкти.",
+      "Олена Григор’єва - концепт-дизайнерка меблів і предметів. Вибрані концепції, 3D-опрацювання та реалізовані об’єкти.",
     languageLabel: "Оберіть мову",
     homeLabel: "Олена Григор’єва - головна сторінка",
     nav: {
@@ -50,12 +50,12 @@ const translations = {
       lastName: "Григор’єва",
       role: "Концепт-дизайнерка меблів і предметів",
       intro:
-        "Досліджую меблі й повсякденні предмети через форму, силует, ергономіку та культурні образи - від ескізів від руки до початкових 3D-робіт і окремих реалізованих об’єктів.",
+        "Досліджую меблі й повсякденні предмети через форму, силует, ергономіку та культурні образи - від ескізів від руки до 3D-опрацювань і окремих реалізованих об’єктів.",
       primaryCta: "Переглянути вибрані роботи",
       secondaryCta: "Про мою практику",
       figureTitle: "01 / Скульптурне крісло",
-      figureStatus: "Початкова 3D-робота",
-      figureAlt: "Скульптурне крісло - початкова робота Олени Григор’євої у Blender",
+      figureStatus: "3D-опрацювання концепції",
+      figureAlt: "Скульптурне крісло - 3D-опрацювання концепції Олени Григор’євої у Blender",
     },
     portfolio: {
       eyebrow: "Два творчі напрями",
@@ -63,22 +63,21 @@ const translations = {
       furnitureIndex: "01 / Основний напрям",
       furnitureTitle: "Концепт-дизайн меблів і предметів",
       furnitureDescription:
-        "Скульптурні меблі, рішення для компактного житла, освітлення й людиноцентричні предмети, досліджені через ескізи, матеріали, початкове 3D-моделювання та реалізовані проєкти.",
+        "Скульптурні меблі, рішення для компактного житла, освітлення й людиноцентричні предмети, досліджені через ескізи, матеріали, 3D-моделювання та реалізовані проєкти.",
       openPdf: "Відкрити PDF-портфоліо",
       downloadPdf: "Завантажити PDF",
       stylingIndex: "02 / Візуальний досвід",
-      stylingTitle: "Стилістика й візуальний напрям",
+      stylingTitle: "Портфоліо стилістки",
       stylingDescription:
-        "Досвід роботи із силуетом, кольором, фактурою та візуальною оповіддю, який сьогодні впливає на мій підхід до матеріалів, предметів і атмосфери простору.",
-      availability: "Вибране портфоліо - за запитом",
-      requestStyling: "Запросити портфоліо зі стилістики",
-      stylingSubject: "Запит на портфоліо зі стилістики",
+        "Добірка робіт зі стилістики образів, роботи з кольором, фактурою та візуальною композицією. Цей досвід сьогодні впливає на мій підхід до матеріалів, предметів і атмосфери простору.",
+      openStylingPdf: "Відкрити портфоліо стилістки",
+      downloadStylingPdf: "Завантажити PDF",
     },
     work: {
-      eyebrow: "Вибрані меблі й предмети",
+      eyebrow: "Концепт-дизайнер меблів і предметів інтер’єру та побуту",
       title: "Форма, що має сенс",
       note:
-        "Поточне портфоліо поєднує авторські концептуальні ескізи, початкові роботи у Blender і реалізовані рішення. Стадію кожного проєкту позначено чітко.",
+        "Поточне портфоліо поєднує авторські концептуальні ескізи, 3D-опрацювання у Blender і реалізовані рішення. Стадію кожного проєкту позначено чітко.",
     },
     projects: [
       {
@@ -90,7 +89,7 @@ const translations = {
       {
         title: "Скульптурне крісло",
         category: "Дослідження форми й об’єму",
-        status: "Початкова 3D-робота",
+        status: "3D-опрацювання концепції",
         alt: "Скульптурне м’яке крісло, змодельоване у Blender",
       },
       {
@@ -149,8 +148,8 @@ const translations = {
       title: "Візуальне мислення, спрямоване до матеріальної форми.",
       paragraphs: [
         "Мої ідеї часто починаються зі спостереження, культурного образу або форми, зафіксованої швидким ескізом. Далі я розвиваю концепцію через сценарій використання, силует, ергономіку й можливі матеріали.",
-        "Моє поточне портфоліо поєднує ескізи меблів і предметів від руки, початкові роботи у Blender та кілька реалізованих рішень. Досвід у стилістиці загострив моє відчуття пропорцій, фактури, кольору та візуальної оповіді.",
-        "Я продовжую розвивати професійні навички у дизайні меблів і 3D та відкрита до позицій початкового рівня, стажувань і співпраці, зосередженої на розробленні концепцій.",
+        "Моє поточне портфоліо поєднує ескізи меблів і предметів від руки, 3D-опрацювання у Blender та кілька реалізованих рішень. Досвід у стилістиці загострив моє відчуття пропорцій, фактури, кольору та візуальної оповіді.",
+        "Після переосмислення професійного шляху я свідомо зосередилася на дизайні меблів і предметів - напрямі, який давно був частиною мого візуального мислення та творчої практики. Для мене це не початок творчого шляху, а новий професійний фокус для вже сформованої дизайнерської оптики. Продовжую поглиблювати навички у дизайні меблів і 3D, спираючись на досвід у стилістиці, композиції, роботі з кольором, матеріалами та простором.",
       ],
       skillsLabel: "Основні навички та інструменти",
       skills: [
@@ -158,14 +157,14 @@ const translations = {
         "Ескізування від руки",
         "Дослідження матеріалів і кольору",
         "Просторове мислення",
-        "Blender - базовий рівень",
+        "Blender - 3D-опрацювання концепцій",
       ],
     },
     contact: {
       eyebrow: "Контакти",
       title: "Перетворімо ідею на продуманий предмет.",
       description:
-        "Відкрита до розроблення концепцій меблів і предметів, позицій початкового рівня, стажувань і спільних проєктів. Перебуваю у Грузії та працюю дистанційно.",
+        "Відкрита до різних форматів співпраці у сфері концептуального дизайну меблів і предметів - проєктної роботи, роботи в команді та творчих партнерств. Наразі перебуваю у Грузії та працюю дистанційно.",
     },
     footer: {
       copyright: "© 2026 Олена Григор’єва",
@@ -176,7 +175,7 @@ const translations = {
   en: {
     metaTitle: "Olena Hryhorieva - Furniture & Object Concept Designer",
     metaDescription:
-      "Olena Hryhorieva - furniture and object concept designer. Selected concepts, early 3D studies, and implemented objects.",
+      "Olena Hryhorieva - furniture and object concept designer. Selected concepts, 3D development, and implemented objects.",
     languageLabel: "Choose language",
     homeLabel: "Olena Hryhorieva - home",
     nav: {
@@ -191,12 +190,12 @@ const translations = {
       lastName: "Hryhorieva",
       role: "Furniture & Object Concept Designer",
       intro:
-        "I explore furniture and everyday objects through form, silhouette, ergonomics, and cultural research - from hand-drawn concepts to early 3D studies and selected implemented pieces.",
+        "I explore furniture and everyday objects through form, silhouette, ergonomics, and cultural research - from hand-drawn concepts to 3D development and selected implemented pieces.",
       primaryCta: "View selected work",
       secondaryCta: "About my practice",
       figureTitle: "01 / Sculptural Armchair",
-      figureStatus: "Early 3D study",
-      figureAlt: "Sculptural armchair - an early Blender study by Olena Hryhorieva",
+      figureStatus: "3D concept development",
+      figureAlt: "Sculptural armchair - 3D concept development by Olena Hryhorieva in Blender",
     },
     portfolio: {
       eyebrow: "Two creative practices",
@@ -204,22 +203,21 @@ const translations = {
       furnitureIndex: "01 / Primary practice",
       furnitureTitle: "Furniture & Object Concept Design",
       furnitureDescription:
-        "Sculptural furniture, compact-living solutions, lighting, and human-centered objects explored through sketching, materials, early 3D, and implemented work.",
+        "Sculptural furniture, compact-living solutions, lighting, and human-centered objects explored through sketching, materials, 3D development, and implemented work.",
       openPdf: "Open portfolio PDF",
       downloadPdf: "Download PDF",
       stylingIndex: "02 / Visual background",
-      stylingTitle: "Fashion Styling & Visual Direction",
+      stylingTitle: "Styling Portfolio",
       stylingDescription:
-        "A background in silhouette, color, texture, and visual narrative that now informs how I think about materials, objects, and atmosphere.",
-      availability: "Selected portfolio available on request",
-      requestStyling: "Request styling portfolio",
-      stylingSubject: "Styling portfolio request",
+        "A selection of image styling work focused on color, texture, proportion, and visual composition. This experience now informs how I think about materials, objects, and atmosphere.",
+      openStylingPdf: "Open styling portfolio",
+      downloadStylingPdf: "Download PDF",
     },
     work: {
-      eyebrow: "Selected furniture & objects",
+      eyebrow: "Concept Designer for Furniture, Interior & Everyday Objects",
       title: "Form with a reason",
       note:
-        "Current work combines author’s concept sketches, introductory Blender studies, and implemented solutions. Each status is labeled clearly.",
+        "Current work combines original concept sketches, 3D development in Blender, and implemented solutions. Each status is labeled clearly.",
     },
     projects: [
       {
@@ -231,7 +229,7 @@ const translations = {
       {
         title: "Sculptural Armchair",
         category: "Form and volume study",
-        status: "Early 3D study",
+        status: "3D concept development",
         alt: "Sculptural upholstered armchair modeled in Blender",
       },
       {
@@ -290,8 +288,8 @@ const translations = {
       title: "A visual eye moving toward tangible form.",
       paragraphs: [
         "My ideas often begin with an observation, a cultural reference, or a form captured in a quick sketch. I then develop the concept through its intended use, silhouette, ergonomics, and possible materials.",
-        "My current portfolio combines hand-drawn furniture and object concepts, early Blender studies, and several implemented solutions. A background in styling has strengthened my sensitivity to proportion, texture, color, and visual storytelling.",
-        "I am continuing to develop my professional furniture-design and 3D workflow and am open to junior roles, internships, and concept-focused collaborations.",
+        "My current portfolio combines hand-drawn furniture and object concepts, 3D development in Blender, and several implemented solutions. A background in styling has strengthened my sensitivity to proportion, texture, color, and visual storytelling.",
+        "After reassessing my professional direction, I made a deliberate decision to focus on furniture and object design - a field that has long been part of my visual thinking and creative practice. This is not the beginning of my creative path, but a new professional focus for an already established design perspective. I continue to deepen my furniture design and 3D practice, drawing on experience in styling, composition, color, materials, and spatial thinking.",
       ],
       skillsLabel: "Core strengths and tools",
       skills: [
@@ -299,14 +297,14 @@ const translations = {
         "Hand sketching",
         "Material & color research",
         "Spatial problem solving",
-        "Blender - basic",
+        "Blender - 3D concept development",
       ],
     },
     contact: {
       eyebrow: "Contact",
       title: "Let’s develop an idea into a thoughtful object.",
       description:
-        "Open to furniture and object concept design, junior roles, internships, and collaborative projects. Based in Georgia and available remotely.",
+        "I am open to different forms of collaboration in furniture and object concept design, including project-based work, team roles, and creative partnerships. I am currently based in Georgia and work remotely.",
     },
     footer: {
       copyright: "© 2026 Olena Hryhorieva",
@@ -453,12 +451,20 @@ function App() {
                 <p>{t.portfolio.stylingDescription}</p>
               </div>
               <div className="card-actions">
-                <span className="availability">{t.portfolio.availability}</span>
+                <a
+                  className="button button-light"
+                  href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {t.portfolio.openStylingPdf} <Arrow />
+                </a>
                 <a
                   className="small-link"
-                  href={`mailto:elegorieva@gmail.com?subject=${encodeURIComponent(t.portfolio.stylingSubject)}`}
+                  href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
+                  download
                 >
-                  {t.portfolio.requestStyling} <Arrow />
+                  {t.portfolio.downloadStylingPdf} <Arrow down />
                 </a>
               </div>
             </article>
