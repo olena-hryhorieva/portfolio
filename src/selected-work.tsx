@@ -19,6 +19,14 @@ const labels = {
     tableSketch: "Hand sketch of the table with a floral panel",
     tableObject: "Standalone table visualization from two angles",
     standalone: "Standalone visualization",
+    wardrobe: "Quiet Gallery Wardrobe",
+    wardrobeDescription: "A built-in wardrobe concept for a furniture manufacturer preparing to exhibit in Milan. The brief called for a wardrobe in the style of Poliform. I paired matte graphite fronts with softly lit bronze-glass display bays and developed the layouts, material palette and hardware details.",
+    wardrobeFront: "Matte graphite wardrobe doors with two lit display bays",
+    wardrobeGlazedWall: "Wardrobe wall with glazed hanging and storage sections",
+    wardrobeRoom: "Two wardrobe walls with a central display island",
+    wardrobeLayout: "Functional layout for both wardrobe walls",
+    wardrobeMaterials: "Material and finish palette",
+    wardrobeDownload: "Download the wardrobe concept (PDF, Ukrainian)",
     concept: "AI-assisted visualization",
     sketch: "Original hand sketch",
     interiors: "Interior styling",
@@ -31,6 +39,7 @@ const labels = {
     kitchen: "Completed kitchen",
     kitchenDrawing: "Kitchen cabinet drawing with dimensions",
     diningNook: "Dining nook set for two",
+    decorDetail: "Candle and framed artwork",
     candlelight: "Candlelight detail",
     enlarge: "Enlarge image",
     viewer: "Image preview",
@@ -60,6 +69,14 @@ const labels = {
     tableSketch: "Ручний ескіз столу з квітковою вставкою",
     tableObject: "Предметна візуалізація столу у двох ракурсах",
     standalone: "Предметна візуалізація",
+    wardrobe: "Гардеробна «Тиха галерея»",
+    wardrobeDescription: "Концепт вбудованої гардеробної для меблевої фабрики, яка готується до виставки в Мілані. За брифом потрібно було спроєктувати гардеробну в стилі Poliform. Я поєднала матові графітові фасади з м’яко підсвіченими вітринами з бронзового скла та опрацювала конфігурацію, палітру матеріалів і вузли фурнітури.",
+    wardrobeFront: "Матові графітові фасади з двома підсвіченими вітринами",
+    wardrobeGlazedWall: "Стіна гардеробної із заскленими секціями для одягу та зберігання",
+    wardrobeRoom: "Дві стіни гардеробної та центральний острів-вітрина",
+    wardrobeLayout: "Функціональна схема обох стін гардеробної",
+    wardrobeMaterials: "Палітра матеріалів та оздоблення",
+    wardrobeDownload: "Завантажити концепт гардеробної (PDF)",
     concept: "Візуалізація за допомогою ШІ",
     sketch: "Авторський ескіз",
     interiors: "Стилістика інтер’єру",
@@ -72,6 +89,7 @@ const labels = {
     kitchen: "Реалізована кухня",
     kitchenDrawing: "Креслення кухонних меблів із розмірами",
     diningNook: "Обідній куточок із сервіруванням на двох",
+    decorDetail: "Свічка та графіка в рамі",
     candlelight: "Свічки крупним планом",
     enlarge: "Збільшити зображення",
     viewer: "Перегляд зображення",
@@ -178,13 +196,20 @@ export function SelectedWork({ language, asset }: {
     );
   }
 
-  const objects: { id: string; title: string; description: string; main: Photo; details: Photo[] }[] = [
+  const objects: {
+    id: string;
+    title: string;
+    description: string;
+    main: Photo;
+    details: Photo[];
+    download?: { path: string; label: string };
+  }[] = [
     {
       id: "lamp", title: t.lamp, description: t.lampDescription,
       main: { file: "table-lamp-room", alt: t.lampHero, caption: t.concept },
       details: [
-        { file: "table-lamp-object", alt: t.lampObject, caption: t.lampObject },
         { file: "table-lamp-sketch", alt: t.lampSketch, caption: t.sketch },
+        { file: "table-lamp-object", alt: t.lampObject, caption: t.lampObject },
       ],
     },
     {
@@ -196,6 +221,20 @@ export function SelectedWork({ language, asset }: {
         { file: "floral-table-detail", alt: t.tableDetail, caption: t.tableDetail },
       ],
     },
+    {
+      id: "wardrobe", title: t.wardrobe, description: t.wardrobeDescription,
+      main: { file: "quiet-gallery-front", alt: t.wardrobeFront, caption: t.concept },
+      details: [
+        { file: "quiet-gallery-glazed-wall", alt: t.wardrobeGlazedWall, caption: t.wardrobeGlazedWall },
+        { file: "quiet-gallery-room", alt: t.wardrobeRoom, caption: t.wardrobeRoom },
+        { file: "quiet-gallery-layout", alt: t.wardrobeLayout, caption: t.wardrobeLayout },
+        { file: "quiet-gallery-materials", alt: t.wardrobeMaterials, caption: t.wardrobeMaterials },
+      ],
+      download: {
+        path: "files/olena-hryhorieva-quiet-gallery-wardrobe.pdf",
+        label: t.wardrobeDownload,
+      },
+    },
   ];
   const rooms: Photo[] = [
     { file: "berezniaky-before", alt: t.before, caption: t.before },
@@ -206,6 +245,7 @@ export function SelectedWork({ language, asset }: {
     { file: "berezniaky-kitchen", alt: t.kitchen, caption: t.kitchen },
     { file: "berezniaky-kitchen-drawing", alt: t.kitchenDrawing, caption: t.kitchenDrawing },
     { file: "berezniaky-dining-nook", alt: t.diningNook, caption: t.diningNook },
+    { file: "berezniaky-decor-detail", alt: t.decorDetail, caption: t.decorDetail },
     { file: "berezniaky-candlelight", alt: t.candlelight, caption: t.candlelight },
   ];
   const apartmentPhotos = [...rooms, ...roomDetails];
@@ -229,8 +269,15 @@ export function SelectedWork({ language, asset }: {
             return (
               <article className="object-card" key={project.id} id={project.id}>
                 {renderPhoto(photos, 0, "object-cover")}
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <div className="object-copy">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  {project.download && (
+                    <a className="small-link object-download" href={asset(project.download.path)} download>
+                      {project.download.label} <span aria-hidden="true">↓</span>
+                    </a>
+                  )}
+                </div>
                 <div className="object-details">
                   {project.details.map((_, index) => renderPhoto(photos, index + 1))}
                 </div>
@@ -267,7 +314,7 @@ export function SelectedWork({ language, asset }: {
                   controls
                   playsInline
                   preload="none"
-                  poster={asset(`${images}${clip.file}.webp`)}
+                  poster={asset(`${images}${clip.file}-cover.webp`)}
                 >
                   <source src={asset(`videos/${clip.file}.mp4`)} type="video/mp4" />
                   <a href={asset(`videos/${clip.file}.mp4`)}>{t.videoFallback}</a>
@@ -300,21 +347,21 @@ export function SelectedWork({ language, asset }: {
         </div>
         {position && selectedPhoto && (
           <figure>
-            <img
-              src={photoUrl(selectedPhoto)}
-              alt={selectedPhoto.alt}
-              draggable={false}
-              onTouchStart={startSwipe}
-              onTouchEnd={endSwipe}
-              onTouchCancel={() => { touchStart.current = null; }}
-            />
-            <figcaption className="image-viewer-navigation">
-              <button className="image-viewer-button" type="button" aria-label={t.previous} onClick={() => changePhoto(-1)}>←</button>
-              <span className="image-viewer-caption" aria-live="polite">
-                {selectedPhoto.caption}
-                <small>{position.index + 1} / {position.photos.length}</small>
-              </span>
-              <button className="image-viewer-button" type="button" aria-label={t.next} onClick={() => changePhoto(1)}>→</button>
+            <div className="image-viewer-stage">
+              <img
+                src={photoUrl(selectedPhoto)}
+                alt={selectedPhoto.alt}
+                draggable={false}
+                onTouchStart={startSwipe}
+                onTouchEnd={endSwipe}
+                onTouchCancel={() => { touchStart.current = null; }}
+              />
+              <button className="image-viewer-button image-viewer-previous" type="button" aria-label={t.previous} onClick={() => changePhoto(-1)}>←</button>
+              <button className="image-viewer-button image-viewer-next" type="button" aria-label={t.next} onClick={() => changePhoto(1)}>→</button>
+            </div>
+            <figcaption className="image-viewer-caption" aria-live="polite">
+              {selectedPhoto.caption}
+              <small>{position.index + 1} / {position.photos.length}</small>
             </figcaption>
           </figure>
         )}

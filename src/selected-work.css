@@ -80,7 +80,7 @@
 }
 
 .room-detail-gallery {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-top: 28px;
 }
 
@@ -113,6 +113,37 @@
   object-fit: contain;
 }
 
+#wardrobe {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  gap: clamp(22px, 3vw, 40px);
+  align-items: center;
+  margin-top: 18px;
+  padding-top: clamp(28px, 5vw, 64px);
+  border-top: 1px solid var(--line);
+}
+
+#wardrobe .object-cover img,
+#wardrobe .object-details img {
+  aspect-ratio: 16 / 9;
+}
+
+#wardrobe .object-copy h3 {
+  margin-top: 0;
+}
+
+#wardrobe .object-details {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: none;
+  margin-top: 0;
+}
+
+.object-download {
+  margin-top: 22px;
+}
+
 .gallery-photo-button {
   position: relative;
   display: block;
@@ -120,7 +151,6 @@
   padding: 0;
   border: 0;
   background: transparent;
-  cursor: zoom-in;
 }
 
 .gallery-photo-button:focus-visible,
@@ -231,15 +261,28 @@ body:has(.image-viewer[open]) {
   touch-action: pan-y pinch-zoom;
 }
 
-.image-viewer-navigation {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 44px;
-  gap: 10px;
-  align-items: center;
-  margin-top: 8px;
+.image-viewer-stage {
+  position: relative;
+}
+
+.image-viewer-previous,
+.image-viewer-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 1px 6px #25241f35;
+}
+
+.image-viewer-previous {
+  left: 8px;
+}
+
+.image-viewer-next {
+  right: 8px;
 }
 
 .image-viewer-caption {
+  margin-top: 8px;
   color: var(--muted);
   font-size: 14px;
   text-align: center;
@@ -281,7 +324,12 @@ body:has(.image-viewer[open]) {
     gap: 32px;
   }
 
-  .room-detail-gallery {
+  #wardrobe {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .room-detail-gallery,
+  #wardrobe .object-details {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
