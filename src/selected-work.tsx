@@ -26,7 +26,8 @@ const labels = {
     wardrobeRoom: "Two wardrobe walls with a central display island",
     wardrobeLayout: "Functional layout for both wardrobe walls",
     wardrobeMaterials: "Material and finish palette",
-    wardrobeDownload: "Download the wardrobe concept (PDF, Ukrainian)",
+    wardrobeView: "View PDF",
+    wardrobeDownload: "Download PDF",
     concept: "AI-assisted visualization",
     sketch: "Original hand sketch",
     interiors: "Interior styling",
@@ -76,7 +77,8 @@ const labels = {
     wardrobeRoom: "Дві стіни гардеробної та центральний острів-вітрина",
     wardrobeLayout: "Функціональна схема обох стін гардеробної",
     wardrobeMaterials: "Палітра матеріалів та оздоблення",
-    wardrobeDownload: "Завантажити концепт гардеробної (PDF)",
+    wardrobeView: "Переглянути PDF",
+    wardrobeDownload: "Завантажити PDF",
     concept: "Візуалізація за допомогою ШІ",
     sketch: "Авторський ескіз",
     interiors: "Стилістика інтер’єру",
@@ -202,7 +204,7 @@ export function SelectedWork({ language, asset }: {
     description: string;
     main: Photo;
     details: Photo[];
-    download?: { path: string; label: string };
+    pdf?: string;
   }[] = [
     {
       id: "lamp", title: t.lamp, description: t.lampDescription,
@@ -227,13 +229,12 @@ export function SelectedWork({ language, asset }: {
       details: [
         { file: "quiet-gallery-glazed-wall", alt: t.wardrobeGlazedWall, caption: t.wardrobeGlazedWall },
         { file: "quiet-gallery-room", alt: t.wardrobeRoom, caption: t.wardrobeRoom },
-        { file: "quiet-gallery-layout", alt: t.wardrobeLayout, caption: t.wardrobeLayout },
-        { file: "quiet-gallery-materials", alt: t.wardrobeMaterials, caption: t.wardrobeMaterials },
+        { file: language === "en" ? "quiet-gallery-layout-en" : "quiet-gallery-layout", alt: t.wardrobeLayout, caption: t.wardrobeLayout },
+        { file: language === "en" ? "quiet-gallery-materials-en" : "quiet-gallery-materials", alt: t.wardrobeMaterials, caption: t.wardrobeMaterials },
       ],
-      download: {
-        path: "files/olena-hryhorieva-quiet-gallery-wardrobe.pdf",
-        label: t.wardrobeDownload,
-      },
+      pdf: language === "en"
+        ? "files/olena-hryhorieva-quiet-gallery-wardrobe-en.pdf"
+        : "files/olena-hryhorieva-quiet-gallery-wardrobe.pdf",
     },
   ];
   const rooms: Photo[] = [
@@ -272,10 +273,15 @@ export function SelectedWork({ language, asset }: {
                 <div className="object-copy">
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
-                  {project.download && (
-                    <a className="small-link object-download" href={asset(project.download.path)} download>
-                      {project.download.label} <span aria-hidden="true">↓</span>
-                    </a>
+                  {project.pdf && (
+                    <div className="object-pdf-links">
+                      <a className="small-link" href={asset(project.pdf)} target="_blank" rel="noreferrer">
+                        {t.wardrobeView} <span aria-hidden="true">↗</span>
+                      </a>
+                      <a className="small-link" href={asset(project.pdf)} download>
+                        {t.wardrobeDownload} <span aria-hidden="true">↓</span>
+                      </a>
+                    </div>
                   )}
                 </div>
                 <div className="object-details">
@@ -348,6 +354,7 @@ export function SelectedWork({ language, asset }: {
         {position && selectedPhoto && (
           <figure>
             <div className="image-viewer-stage">
+              <button className="image-viewer-button image-viewer-previous" type="button" aria-label={t.previous} onClick={() => changePhoto(-1)}>←</button>
               <img
                 src={photoUrl(selectedPhoto)}
                 alt={selectedPhoto.alt}
@@ -356,7 +363,6 @@ export function SelectedWork({ language, asset }: {
                 onTouchEnd={endSwipe}
                 onTouchCancel={() => { touchStart.current = null; }}
               />
-              <button className="image-viewer-button image-viewer-previous" type="button" aria-label={t.previous} onClick={() => changePhoto(-1)}>←</button>
               <button className="image-viewer-button image-viewer-next" type="button" aria-label={t.next} onClick={() => changePhoto(1)}>→</button>
             </div>
             <figcaption className="image-viewer-caption" aria-live="polite">
