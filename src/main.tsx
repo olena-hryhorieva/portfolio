@@ -38,14 +38,6 @@ const translations = {
       figureStatus: "Авторська концепція",
       figureAlt: "Концепт настільної лампи з мереживним абажуром у вітальні",
     },
-    portfolio: {
-      stylingTitle: "Мода, стилістика образів",
-      stylingDescription:
-        "Добірка редакційних зйомок, персональних образів, візуальних перевтілень і роботи для телебачення. Досвід із силуетом, кольором і фактурою поглиблює мій підхід до матеріалів, предметів та атмосфери інтер’єру.",
-      stylingPhotoAlt: "Чотири кадри з модної зйомки з бірюзовими акцентами",
-      openStylingPdf: "Переглянути PDF",
-      downloadStylingPdf: "Завантажити PDF",
-    },
     approach: {
       eyebrow: "Метод роботи",
       title: "Від спостереження до предмета",
@@ -126,14 +118,6 @@ const translations = {
       figureTitle: "Lace Shade Table Lamp",
       figureStatus: "Original concept",
       figureAlt: "Original lace shade table lamp concept in a living room",
-    },
-    portfolio: {
-      stylingTitle: "Fashion Styling & Visual Direction",
-      stylingDescription:
-        "A selection of editorial shoots, personal styling, visual transformations, and work for television. Experience with silhouette, color, and texture continues to inform my approach to materials, objects, and interior atmosphere.",
-      stylingPhotoAlt: "Four editorial fashion photographs with teal accents",
-      openStylingPdf: "View PDF",
-      downloadStylingPdf: "Download PDF",
     },
     approach: {
       eyebrow: "Working method",
@@ -293,40 +277,6 @@ function App() {
         </section>
 
         <SelectedWork language={language} asset={asset} />
-
-        <section className="portfolio-paths section-shell" id="portfolio" aria-labelledby="styling-title">
-          <div className="styling-path">
-            <div className="styling-copy">
-              <h2 id="styling-title">{t.portfolio.stylingTitle}</h2>
-              <p>{t.portfolio.stylingDescription}</p>
-              <div className="card-actions">
-                <a
-                  className="button button-light"
-                  href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {t.portfolio.openStylingPdf} <Arrow />
-                </a>
-                <a
-                  className="small-link"
-                  href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
-                  download
-                >
-                  {t.portfolio.downloadStylingPdf} <Arrow down />
-                </a>
-              </div>
-            </div>
-            <img
-              className="styling-photo"
-              src={asset("images/selected/fashion-styling-page-3.webp")}
-              alt={t.portfolio.stylingPhotoAlt}
-              width={1060}
-              height={1500}
-              loading="lazy"
-            />
-          </div>
-        </section>
 
         <section className="approach section-shell" id="approach" aria-labelledby="approach-title">
           <div className="section-heading">

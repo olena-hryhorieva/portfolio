@@ -155,6 +155,7 @@
   border: 0;
   background: transparent;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .gallery-photo-button:focus-visible,
@@ -232,6 +233,12 @@ body:has(.image-viewer[open]) {
   color: var(--ink);
 }
 
+.image-viewer-single {
+  width: fit-content;
+  max-width: calc(100vw - 16px);
+  padding: 8px;
+}
+
 .image-viewer::backdrop {
   background: #25241fe8;
 }
@@ -270,6 +277,17 @@ body:has(.image-viewer[open]) {
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: clamp(7px, 1vw, 14px);
+}
+
+.image-viewer-single .image-viewer-stage {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.image-viewer-single .image-viewer-stage img {
+  justify-self: center;
+  width: auto;
+  height: auto;
+  max-height: max(580px, calc(100dvh - 100px));
 }
 
 .image-viewer-caption {

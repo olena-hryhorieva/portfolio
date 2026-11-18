@@ -30,6 +30,12 @@ const labels = {
     wardrobeDownload: "Download PDF",
     concept: "AI-assisted visualization",
     sketch: "Original hand sketch",
+    stylingTitle: "Fashion Styling & Visual Direction",
+    stylingDescription:
+      "A selection of editorial shoots, personal styling, visual transformations, and work for television. Experience with silhouette, color, and texture continues to inform my approach to materials, objects, and interior atmosphere.",
+    stylingPhotoAlt: "Four editorial fashion photographs with teal accents",
+    openStylingPdf: "View PDF",
+    downloadStylingPdf: "Download PDF",
     interiors: "Interior styling",
     apartment: "Berezniaky Rental Apartment",
     apartmentDescription: "I prepared this Kyiv apartment for rental in 2019 by refreshing the existing furniture with textiles, lighting and decor. I had designed the kitchen during an earlier renovation. These are archival photos of the actual apartment.",
@@ -81,6 +87,12 @@ const labels = {
     wardrobeDownload: "Завантажити PDF",
     concept: "Візуалізація за допомогою ШІ",
     sketch: "Авторський ескіз",
+    stylingTitle: "Мода, стилістика образів",
+    stylingDescription:
+      "Добірка редакційних зйомок, персональних образів, візуальних перевтілень і роботи для телебачення. Досвід із силуетом, кольором і фактурою поглиблює мій підхід до матеріалів, предметів та атмосфери інтер’єру.",
+    stylingPhotoAlt: "Чотири кадри з модної зйомки з бірюзовими акцентами",
+    openStylingPdf: "Переглянути PDF",
+    downloadStylingPdf: "Завантажити PDF",
     interiors: "Стилістика інтер’єру",
     apartment: "Квартира під оренду на Березняках",
     apartmentDescription: "У 2019 році я підготувала київську квартиру до оренди й освіжила простір текстилем, світлом і декором. Кухню спроєктувала під час попереднього ремонту. Тут показані архівні фото реальної квартири.",
@@ -108,7 +120,12 @@ const labels = {
   },
 } as const;
 
-type Photo = { file: string; alt: string; caption: string };
+type Photo = {
+  file: string;
+  alt: string;
+  caption?: string;
+  dimensions?: { width: number; height: number };
+};
 type GalleryPosition = { photos: readonly Photo[]; index: number };
 
 function GalleryPhoto({ photo, url, buttonLabel, onOpen, className }: {
@@ -127,10 +144,16 @@ function GalleryPhoto({ photo, url, buttonLabel, onOpen, className }: {
         aria-haspopup="dialog"
         onClick={(event) => onOpen(event.currentTarget)}
       >
-        <img src={url} alt={photo.alt} loading="lazy" />
+        <img
+          src={url}
+          alt={photo.alt}
+          width={photo.dimensions?.width}
+          height={photo.dimensions?.height}
+          loading="lazy"
+        />
         <span className="gallery-photo-icon" aria-hidden="true" />
       </button>
-      <figcaption>{photo.caption}</figcaption>
+      {photo.caption && <figcaption>{photo.caption}</figcaption>}
     </figure>
   );
 }
@@ -145,6 +168,7 @@ export function SelectedWork({ language, asset }: {
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const [position, setPosition] = useState<GalleryPosition | null>(null);
   const selectedPhoto = position?.photos[position.index];
+  const hasMultiplePhotos = (position?.photos.length ?? 0) > 1;
   const photoUrl = (photo: Photo) => asset(`${images}${photo.file}.webp`);
 
   function openPhoto(photos: readonly Photo[], index: number, button: HTMLButtonElement) {
@@ -333,13 +357,44 @@ export function SelectedWork({ language, asset }: {
         </div>
       </section>
 
+      <section className="portfolio-paths section-shell" id="portfolio" aria-labelledby="styling-title">
+        <div className="styling-path">
+          <div className="styling-copy">
+            <h2 id="styling-title">{t.stylingTitle}</h2>
+            <p>{t.stylingDescription}</p>
+            <div className="card-actions">
+              <a
+                className="button button-light"
+                href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t.openStylingPdf} <span aria-hidden="true">↗</span>
+              </a>
+              <a
+                className="small-link"
+                href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
+                download
+              >
+                {t.downloadStylingPdf} <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+          {renderPhoto([{
+            file: "fashion-styling-page-3",
+            alt: t.stylingPhotoAlt,
+            dimensions: { width: 1060, height: 1500 },
+          }], 0, "styling-photo")}
+        </div>
+      </section>
+
       <dialog
         ref={viewer}
-        className="image-viewer"
+        className={hasMultiplePhotos ? "image-viewer" : "image-viewer image-viewer-single"}
         aria-label={t.viewer}
         onClose={resetViewer}
         onKeyDown={(event) => {
-          if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+          if (hasMultiplePhotos && (event.key === "ArrowLeft" || event.key === "ArrowRight")) {
             event.preventDefault();
             changePhoto(event.key === "ArrowLeft" ? -1 : 1);
           }
@@ -354,21 +409,27 @@ export function SelectedWork({ language, asset }: {
         {position && selectedPhoto && (
           <figure>
             <div className="image-viewer-stage">
-              <button className="image-viewer-button image-viewer-previous" type="button" aria-label={t.previous} onClick={() => changePhoto(-1)}>←</button>
+              {hasMultiplePhotos && (
+                <button className="image-viewer-button image-viewer-previous" type="button" aria-label={t.previous} onClick={() => changePhoto(-1)}>←</button>
+              )}
               <img
                 src={photoUrl(selectedPhoto)}
                 alt={selectedPhoto.alt}
                 draggable={false}
-                onTouchStart={startSwipe}
-                onTouchEnd={endSwipe}
+                onTouchStart={hasMultiplePhotos ? startSwipe : undefined}
+                onTouchEnd={hasMultiplePhotos ? endSwipe : undefined}
                 onTouchCancel={() => { touchStart.current = null; }}
               />
-              <button className="image-viewer-button image-viewer-next" type="button" aria-label={t.next} onClick={() => changePhoto(1)}>→</button>
+              {hasMultiplePhotos && (
+                <button className="image-viewer-button image-viewer-next" type="button" aria-label={t.next} onClick={() => changePhoto(1)}>→</button>
+              )}
             </div>
-            <figcaption className="image-viewer-caption" aria-live="polite">
-              {selectedPhoto.caption}
-              <small>{position.index + 1} / {position.photos.length}</small>
-            </figcaption>
+            {(selectedPhoto.caption || hasMultiplePhotos) && (
+              <figcaption className="image-viewer-caption" aria-live="polite">
+                {selectedPhoto.caption}
+                {hasMultiplePhotos && <small>{position.index + 1} / {position.photos.length}</small>}
+              </figcaption>
+            )}
           </figure>
         )}
       </dialog>
