@@ -20,7 +20,6 @@ const translations = {
     homeLabel: "Олена Григор’єва - головна сторінка",
     nav: {
       work: "Роботи",
-      portfolio: "Портфоліо",
       approach: "Метод",
       interiors: "Інтер’єри",
       about: "Про мене",
@@ -40,15 +39,7 @@ const translations = {
       figureAlt: "Концепт настільної лампи з мереживним абажуром у вітальні",
     },
     portfolio: {
-      eyebrow: "Два творчі напрями",
       title: "Портфоліо",
-      furnitureIndex: "01 / Основний напрям",
-      furnitureTitle: "Концепт-дизайн меблів і предметів",
-      furnitureDescription:
-        "Авторські концепції меблів і предметів для житлових просторів різного типу та різних сценаріїв повсякденного використання. У фокусі: виразна форма, ергономіка, матеріали, 3D-опрацювання й окремі реалізовані рішення.",
-      openPdf: "Відкрити портфоліо меблів і предметів (PDF)",
-      downloadPdf: "Завантажити PDF",
-      stylingIndex: "02 / Візуальний досвід",
       stylingTitle: "Мода, стилістика образів",
       stylingDescription:
         "Добірка редакційних зйомок, персональних образів, візуальних перевтілень і роботи для телебачення. Досвід із силуетом, кольором і фактурою поглиблює мій підхід до матеріалів, предметів та атмосфери інтер’єру.",
@@ -118,7 +109,6 @@ const translations = {
     homeLabel: "Olena Hryhorieva - home",
     nav: {
       work: "Work",
-      portfolio: "Portfolio",
       approach: "Approach",
       interiors: "Interiors",
       about: "About",
@@ -138,15 +128,7 @@ const translations = {
       figureAlt: "Original lace shade table lamp concept in a living room",
     },
     portfolio: {
-      eyebrow: "Two creative practices",
       title: "Portfolio",
-      furnitureIndex: "01 / Primary practice",
-      furnitureTitle: "Furniture & Object Concept Design",
-      furnitureDescription:
-        "Original furniture and object concepts for different types of homes and everyday-use scenarios. The work focuses on expressive form, ergonomics, materials, 3D development, and selected implemented solutions.",
-      openPdf: "Open furniture & object portfolio (PDF)",
-      downloadPdf: "Download PDF",
-      stylingIndex: "02 / Visual background",
       stylingTitle: "Fashion Styling & Visual Direction",
       stylingDescription:
         "A selection of editorial shoots, personal styling, visual transformations, and work for television. Experience with silhouette, color, and texture continues to inform my approach to materials, objects, and interior atmosphere.",
@@ -255,7 +237,6 @@ function App() {
           <nav aria-label={language === "uk" ? "Основна навігація" : "Primary navigation"}>
             <a href="#home-decor">{t.nav.work}</a>
             <a href="#interiors">{t.nav.interiors}</a>
-            <a href="#portfolio">{t.nav.portfolio}</a>
             <a className="approach-link" href="#approach">{t.nav.approach}</a>
             <a href="#about">{t.nav.about}</a>
             {!workOnly && <a href="#contact">{t.nav.contact}</a>}
@@ -315,61 +296,32 @@ function App() {
 
         <section className="portfolio-paths section-shell" id="portfolio" aria-labelledby="portfolio-title">
           <div className="section-heading">
-            <p className="eyebrow">{t.portfolio.eyebrow}</p>
             <h2 id="portfolio-title">{t.portfolio.title}</h2>
           </div>
 
-          <div className="path-grid">
-            <article className="path-card furniture-path">
-              <div>
-                <p className="card-index">{t.portfolio.furnitureIndex}</p>
-                <h3>{t.portfolio.furnitureTitle}</h3>
-                <p>{t.portfolio.furnitureDescription}</p>
-              </div>
-              <div className="card-actions">
-                <a
-                  className="button button-light"
-                  href={asset("files/olena-hryhorieva-furniture-object-design-portfolio.pdf")}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {t.portfolio.openPdf} <Arrow />
-                </a>
-                <a
-                  className="small-link"
-                  href={asset("files/olena-hryhorieva-furniture-object-design-portfolio.pdf")}
-                  download
-                >
-                  {t.portfolio.downloadPdf} <Arrow down />
-                </a>
-              </div>
-            </article>
-
-            <article className="path-card styling-path">
-              <div>
-                <p className="card-index">{t.portfolio.stylingIndex}</p>
-                <h3>{t.portfolio.stylingTitle}</h3>
-                <p>{t.portfolio.stylingDescription}</p>
-              </div>
-              <div className="card-actions">
-                <a
-                  className="button button-light"
-                  href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {t.portfolio.openStylingPdf} <Arrow />
-                </a>
-                <a
-                  className="small-link"
-                  href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
-                  download
-                >
-                  {t.portfolio.downloadStylingPdf} <Arrow down />
-                </a>
-              </div>
-            </article>
-          </div>
+          <article className="styling-path">
+            <div>
+              <h3>{t.portfolio.stylingTitle}</h3>
+              <p>{t.portfolio.stylingDescription}</p>
+            </div>
+            <div className="card-actions">
+              <a
+                className="button button-light"
+                href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {t.portfolio.openStylingPdf} <Arrow />
+              </a>
+              <a
+                className="small-link"
+                href={asset("files/olena-hryhorieva-styling-portfolio.pdf")}
+                download
+              >
+                {t.portfolio.downloadStylingPdf} <Arrow down />
+              </a>
+            </div>
+          </article>
         </section>
 
         <section className="approach section-shell" id="approach" aria-labelledby="approach-title">
