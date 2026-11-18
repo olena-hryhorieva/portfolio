@@ -177,9 +177,9 @@ function getInitialLanguage(): Language {
   if (requested === "en" || requested === "uk") return requested;
   try {
     const savedLanguage = window.localStorage.getItem("olena-portfolio-language");
-    return savedLanguage === "en" ? "en" : "uk";
+    return savedLanguage === "uk" ? "uk" : "en";
   } catch {
-    return "uk";
+    return "en";
   }
 }
 
@@ -224,17 +224,17 @@ function App() {
           <div className="language-switch" role="group" aria-label={t.languageLabel}>
             <button
               type="button"
-              aria-pressed={language === "uk"}
-              onClick={() => setLanguage("uk")}
-            >
-              UA
-            </button>
-            <button
-              type="button"
               aria-pressed={language === "en"}
               onClick={() => setLanguage("en")}
             >
               EN
+            </button>
+            <button
+              type="button"
+              aria-pressed={language === "uk"}
+              onClick={() => setLanguage("uk")}
+            >
+              UA
             </button>
           </div>
         </div>
