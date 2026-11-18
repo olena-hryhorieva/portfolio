@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import "./selected-work.css";
 
 const images = "images/selected/";
@@ -15,9 +16,9 @@ const labels = {
     tableDescription: "A sculptural stone-finish table with a floral motif across the base. The dining room scene shows how the table anchors the space.",
     tableHero: "Stone-finish dining table with a floral inlay in a sunlit dining room",
     tableDetail: "Material and floral motif study",
-    console: "Wooden Entryway Console",
-    consoleDescription: "A compact wooden console with a concealed compartment for keys, integrated shoe storage and a metal frame.",
-    consoleHero: "Hand sketch of a wooden console with shoe storage",
+    tableSketch: "Hand sketch of the table with a floral panel",
+    tableObject: "Standalone table visualization from two angles",
+    standalone: "Standalone visualization",
     concept: "AI-assisted visualization",
     sketch: "Original hand sketch",
     interiors: "Interior styling",
@@ -26,6 +27,13 @@ const labels = {
     before: "Before styling",
     after: "Ready for rental",
     kitchen: "Completed kitchen",
+    kitchenDrawing: "Kitchen cabinet drawing with dimensions",
+    diningNook: "Dining nook set for two",
+    candlelight: "Candlelight detail",
+    decorDetail: "Candle and framed artwork",
+    enlarge: "Enlarge image",
+    viewer: "Image preview",
+    close: "Close image",
     videos: "Room makeover videos",
     videosDescription: "Two short videos show different ways to refresh the same bedroom. Both use AI-assisted concept images to illustrate the proposed changes.",
     olive: "Warm Olive Bedroom",
@@ -46,9 +54,9 @@ const labels = {
     tableDescription: "Скульптурний стіл із кам’яною фактурою та квітковим мотивом на основі. Візуалізація їдальні показує, як стіл організовує простір.",
     tableHero: "Обідній стіл із квітковою інкрустацією в сонячній їдальні",
     tableDetail: "Фактура матеріалу та квітковий мотив",
-    console: "Дерев’яна консоль для передпокою",
-    consoleDescription: "Компактна дерев’яна консоль із прихованим відділенням для ключів, місцем для взуття та металевим каркасом.",
-    consoleHero: "Ручний ескіз дерев’яної консолі з місцем для взуття",
+    tableSketch: "Ручний ескіз столу з квітковою вставкою",
+    tableObject: "Предметна візуалізація столу у двох ракурсах",
+    standalone: "Предметна візуалізація",
     concept: "Візуалізація за допомогою ШІ",
     sketch: "Авторський ескіз",
     interiors: "Стилістика інтер’єру",
@@ -57,6 +65,13 @@ const labels = {
     before: "До оновлення",
     after: "Готова до оренди",
     kitchen: "Реалізована кухня",
+    kitchenDrawing: "Креслення кухонних меблів із розмірами",
+    diningNook: "Обідній куточок із сервіруванням на двох",
+    candlelight: "Свічки крупним планом",
+    decorDetail: "Свічка та графіка в рамі",
+    enlarge: "Збільшити зображення",
+    viewer: "Перегляд зображення",
+    close: "Закрити зображення",
     videos: "Відео про перетворення кімнати",
     videosDescription: "Два короткі відео показують, як можна по-різному оновити одну спальню. Запропоновані зміни показані на концептуальних візуалізаціях, створених за допомогою ШІ.",
     olive: "Спальня в теплих оливкових тонах",
@@ -67,13 +82,53 @@ const labels = {
   },
 } as const;
 
-type Photo = { file: string; alt: string; caption?: string };
+type Photo = { file: string; alt: string; caption: string };
+
+function GalleryPhoto({ photo, url, buttonLabel, onOpen, className }: {
+  photo: Photo;
+  url: string;
+  buttonLabel: string;
+  onOpen: (photo: Photo, button: HTMLButtonElement) => void;
+  className?: string;
+}) {
+  return (
+    <figure className={className}>
+      <button
+        className="gallery-photo-button"
+        type="button"
+        aria-label={`${buttonLabel} — ${photo.alt}`}
+        aria-haspopup="dialog"
+        onClick={(event) => onOpen(photo, event.currentTarget)}
+      >
+        <img src={url} alt={photo.alt} loading="lazy" />
+        <span className="gallery-photo-icon" aria-hidden="true">+</span>
+      </button>
+      <figcaption>{photo.caption}</figcaption>
+    </figure>
+  );
+}
 
 export function SelectedWork({ language, asset }: {
   language: keyof typeof labels;
   asset: (path: string) => string;
 }) {
   const t = labels[language];
+  const viewer = useRef<HTMLDialogElement>(null);
+  const opener = useRef<HTMLButtonElement>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const photoUrl = (photo: Photo) => asset(`${images}${photo.file}.webp`);
+
+  function openPhoto(photo: Photo, button: HTMLButtonElement) {
+    opener.current = button;
+    setSelectedPhoto(photo);
+    viewer.current?.showModal();
+  }
+
+  function resetViewer() {
+    setSelectedPhoto(null);
+    opener.current?.focus({ preventScroll: true });
+  }
+
   const objects: { id: string; title: string; description: string; main: Photo; details: Photo[] }[] = [
     {
       id: "lamp", title: t.lamp, description: t.lampDescription,
@@ -86,18 +141,23 @@ export function SelectedWork({ language, asset }: {
     {
       id: "dining-table", title: t.table, description: t.tableDescription,
       main: { file: "floral-dining-table", alt: t.tableHero, caption: t.concept },
-      details: [{ file: "floral-table-detail", alt: t.tableDetail, caption: t.tableDetail }],
-    },
-    {
-      id: "wooden-console", title: t.console, description: t.consoleDescription,
-      main: { file: "wood-entry-console", alt: t.consoleHero, caption: t.sketch },
-      details: [],
+      details: [
+        { file: "floral-table-sketch", alt: t.tableSketch, caption: t.sketch },
+        { file: "floral-table-object", alt: t.tableObject, caption: t.standalone },
+        { file: "floral-table-detail", alt: t.tableDetail, caption: t.tableDetail },
+      ],
     },
   ];
-  const rooms = [
-    { file: "berezniaky-before", alt: t.before },
-    { file: "berezniaky-after", alt: t.after },
-    { file: "berezniaky-kitchen", alt: t.kitchen },
+  const rooms: Photo[] = [
+    { file: "berezniaky-before", alt: t.before, caption: t.before },
+    { file: "berezniaky-after", alt: t.after, caption: t.after },
+    { file: "berezniaky-kitchen", alt: t.kitchen, caption: t.kitchen },
+  ];
+  const roomDetails: Photo[] = [
+    { file: "berezniaky-kitchen-drawing", alt: t.kitchenDrawing, caption: t.kitchenDrawing },
+    { file: "berezniaky-dining-nook", alt: t.diningNook, caption: t.diningNook },
+    { file: "berezniaky-candlelight", alt: t.candlelight, caption: t.candlelight },
+    { file: "berezniaky-decor-detail", alt: t.decorDetail, caption: t.decorDetail },
   ];
   const videos = [
     { file: "warm-olive-interior", title: t.olive, description: t.oliveDescription },
@@ -116,24 +176,20 @@ export function SelectedWork({ language, asset }: {
         <div className="object-gallery">
           {objects.map((project) => (
             <article className="object-card" key={project.id} id={project.id}>
-              <figure className="object-cover">
-                <img src={asset(`${images}${project.main.file}.webp`)} alt={project.main.alt} loading="lazy" />
-                <figcaption>{project.main.caption}</figcaption>
-              </figure>
+              <GalleryPhoto
+                className="object-cover"
+                photo={project.main}
+                url={photoUrl(project.main)}
+                buttonLabel={t.enlarge}
+                onOpen={openPhoto}
+              />
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              {project.details.length > 0 && (
-                <div className="object-details">
-                  {project.details.map((photo) => (
-                    <figure key={photo.file}>
-                      <a href={asset(`${images}${photo.file}.webp`)} target="_blank" rel="noreferrer">
-                        <img src={asset(`${images}${photo.file}.webp`)} alt={photo.alt} loading="lazy" />
-                      </a>
-                      <figcaption>{photo.caption}</figcaption>
-                    </figure>
-                  ))}
-                </div>
-              )}
+              <div className="object-details">
+                {project.details.map((photo) => (
+                  <GalleryPhoto key={photo.file} photo={photo} url={photoUrl(photo)} buttonLabel={t.enlarge} onOpen={openPhoto} />
+                ))}
+              </div>
             </article>
           ))}
         </div>
@@ -148,10 +204,12 @@ export function SelectedWork({ language, asset }: {
           <p>{t.apartmentDescription}</p>
           <div className="room-gallery">
             {rooms.map((photo) => (
-              <figure key={photo.file}>
-                <img src={asset(`${images}${photo.file}.webp`)} alt={photo.alt} loading="lazy" />
-                <figcaption>{photo.alt}</figcaption>
-              </figure>
+              <GalleryPhoto key={photo.file} photo={photo} url={photoUrl(photo)} buttonLabel={t.enlarge} onOpen={openPhoto} />
+            ))}
+          </div>
+          <div className="room-detail-gallery">
+            {roomDetails.map((photo) => (
+              <GalleryPhoto key={photo.file} photo={photo} url={photoUrl(photo)} buttonLabel={t.enlarge} onOpen={openPhoto} />
             ))}
           </div>
         </article>
@@ -179,6 +237,26 @@ export function SelectedWork({ language, asset }: {
           </div>
         </div>
       </section>
+
+      <dialog
+        ref={viewer}
+        className="image-viewer"
+        aria-label={t.viewer}
+        onClose={resetViewer}
+        onPointerDown={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close();
+        }}
+      >
+        <form method="dialog" className="image-viewer-controls">
+          <button type="submit" aria-label={t.close}>×</button>
+        </form>
+        {selectedPhoto && (
+          <figure>
+            <img src={photoUrl(selectedPhoto)} alt={selectedPhoto.alt} />
+            <figcaption>{selectedPhoto.caption}</figcaption>
+          </figure>
+        )}
+      </dialog>
     </>
   );
 }
