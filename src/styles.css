@@ -251,7 +251,7 @@ nav a:focus-visible,
 
 .styling-path {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) clamp(240px, 36vw, 440px);
   align-items: center;
   gap: clamp(24px, 4vw, 52px);
 }

@@ -41,7 +41,7 @@ const translations = {
       stylingTitle: "Мода, стилістика образів",
       stylingDescription:
         "Добірка редакційних зйомок, персональних образів, візуальних перевтілень і роботи для телебачення. Досвід із силуетом, кольором і фактурою поглиблює мій підхід до матеріалів, предметів та атмосфери інтер’єру.",
-      stylingPhotoAlt: "Образ у стилі ретро: чорна сукня та довгі рукавички на кам’яних сходах",
+      stylingPhotoAlt: "Чотири кадри з модної зйомки з бірюзовими акцентами",
       openStylingPdf: "Переглянути PDF",
       downloadStylingPdf: "Завантажити PDF",
     },
@@ -129,7 +129,7 @@ const translations = {
       stylingTitle: "Fashion Styling & Visual Direction",
       stylingDescription:
         "A selection of editorial shoots, personal styling, visual transformations, and work for television. Experience with silhouette, color, and texture continues to inform my approach to materials, objects, and interior atmosphere.",
-      stylingPhotoAlt: "Retro fashion portrait in a black dress and long gloves on stone steps",
+      stylingPhotoAlt: "Four editorial fashion photographs with teal accents",
       openStylingPdf: "View PDF",
       downloadStylingPdf: "Download PDF",
     },
@@ -313,10 +313,10 @@ function App() {
             </div>
             <img
               className="styling-photo"
-              src={asset("images/selected/fashion-styling-editorial.jpg")}
+              src={asset("images/selected/fashion-styling-page-3.webp")}
               alt={t.portfolio.stylingPhotoAlt}
-              width={1074}
-              height={1148}
+              width={1060}
+              height={1500}
               loading="lazy"
             />
           </div>
