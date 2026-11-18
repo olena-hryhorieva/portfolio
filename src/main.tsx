@@ -311,8 +311,8 @@ function App() {
           <p className="eyebrow">{t.contact.eyebrow}</p>
           <h2 id="contact-title">{t.contact.title}</h2>
           <p>{t.contact.description}</p>
-          <a className="email-link" href="mailto:elegorieva@gmail.com">
-            elegorieva@gmail.com <Arrow />
+          <a className="email-link" href="mailto:info@hryhorieva.space">
+            info@hryhorieva.space <Arrow />
           </a>
         </section>}
       </main>
