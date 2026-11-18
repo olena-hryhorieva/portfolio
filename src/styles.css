@@ -250,32 +250,30 @@ nav a:focus-visible,
 
 .styling-path {
   display: grid;
-  grid-template-columns: minmax(0, 650px) clamp(240px, 36vw, 440px);
+  grid-template-columns: minmax(0, 0.68fr) minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  gap: clamp(24px, 4vw, 52px);
+  gap: clamp(24px, 4.5vw, 64px);
+  max-width: 980px;
+  margin-inline: auto;
 }
 
 .styling-copy {
-  align-self: stretch;
-  display: grid;
-  align-content: center;
-  padding: clamp(24px, 4vw, 54px);
+  padding: clamp(22px, 3vw, 34px);
   background: var(--lilac);
   color: #2f2732;
 }
 
 .styling-copy h2 {
-  max-width: 720px;
-  margin: 0 0 22px;
+  margin: 0 0 16px;
   font-family: var(--serif);
-  font-size: clamp(32px, 4vw, 62px);
-  line-height: 0.98;
+  font-size: clamp(30px, 3vw, 36px);
+  line-height: 1.03;
+  text-wrap: balance;
 }
 
 .styling-copy p {
-  max-width: 670px;
   margin: 0;
+  font-size: 15px;
   opacity: 0.86;
 }
 
@@ -283,8 +281,8 @@ nav a:focus-visible,
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px 22px;
-  margin-top: 30px;
+  gap: 14px 18px;
+  margin-top: 24px;
 }
 
 .styling-photo {
@@ -496,6 +494,11 @@ a:focus-visible {
 
   .styling-path {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .styling-copy {
+    justify-self: center;
+    width: min(88%, 350px);
   }
 
   .styling-photo {
