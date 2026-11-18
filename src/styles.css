@@ -94,9 +94,9 @@ nav a:focus-visible,
 
 .hero {
   display: grid;
-  min-height: 740px;
-  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.75fr);
-  gap: clamp(54px, 8vw, 120px);
+  min-height: 660px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
+  gap: clamp(36px, 5vw, 76px);
   align-items: center;
   padding-block: 86px 110px;
 }
@@ -113,7 +113,7 @@ nav a:focus-visible,
 .hero h1 {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(60px, 8vw, 112px);
+  font-size: clamp(60px, 7.6vw, 112px);
   font-weight: 600;
   letter-spacing: -0.065em;
   line-height: 0.84;
@@ -192,37 +192,18 @@ nav a:focus-visible,
   position: absolute;
   top: -26px;
   right: -24px;
-  bottom: 46px;
+  bottom: 24px;
   left: 40px;
   z-index: -1;
   border: 1px solid var(--terracotta);
   content: "";
 }
 
-.hero-frame {
-  overflow: hidden;
+.hero-art img {
+  width: 100%;
+  height: auto;
   background: #efe6dc;
   box-shadow: var(--shadow);
-  aspect-ratio: 4 / 5;
-}
-
-.hero-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 43%;
-  transform: scale(1.04);
-}
-
-.hero-art figcaption {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 14px;
-  color: var(--muted);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
 }
 
 .approach,
@@ -439,12 +420,11 @@ a:focus-visible {
 @media (max-width: 980px) {
   .hero {
     min-height: auto;
-    grid-template-columns: 1fr 0.72fr;
-    gap: 50px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero h1 {
-    font-size: clamp(58px, 10vw, 86px);
+    font-size: clamp(54px, 8vw, 78px);
   }
 
   .about {

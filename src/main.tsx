@@ -34,9 +34,7 @@ const translations = {
         "Створюю авторські концепції меблів та освітлення, показую предмети в інтер’єрі й оновлюю житлові простори за допомогою меблів, світла та декору.",
       primaryCta: "Переглянути вибрані роботи",
       secondaryCta: "Про мою практику",
-      figureTitle: "Настільна лампа з мереживним абажуром",
-      figureStatus: "Авторська концепція",
-      figureAlt: "Концепт настільної лампи з мереживним абажуром у вітальні",
+      portraitAlt: "Олена Григор’єва за столом з ескізом меблів",
     },
     approach: {
       eyebrow: "Метод роботи",
@@ -115,9 +113,7 @@ const translations = {
         "I design furniture and lighting concepts, visualize products in interiors, and refresh rooms through furniture, lighting and decor.",
       primaryCta: "View selected work",
       secondaryCta: "About my practice",
-      figureTitle: "Lace Shade Table Lamp",
-      figureStatus: "Original concept",
-      figureAlt: "Original lace shade table lamp concept in a living room",
+      portraitAlt: "Olena Hryhorieva at her desk with a furniture sketch",
     },
     approach: {
       eyebrow: "Working method",
@@ -266,13 +262,13 @@ function App() {
           </div>
 
           <figure className="hero-art">
-            <div className="hero-frame">
-              <img src={asset("images/selected/table-lamp-room.webp")} alt={t.hero.figureAlt} />
-            </div>
-            <figcaption>
-              <span>{t.hero.figureTitle}</span>
-              <span>{t.hero.figureStatus}</span>
-            </figcaption>
+            <img
+              src={asset("images/olena-at-work.webp")}
+              alt={t.hero.portraitAlt}
+              width={1672}
+              height={941}
+              fetchPriority="high"
+            />
           </figure>
         </section>
 
