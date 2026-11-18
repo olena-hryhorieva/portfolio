@@ -61,26 +61,16 @@ img {
   backdrop-filter: blur(16px);
 }
 
-.site-brand {
-  display: inline-flex;
-  align-items: center;
-  justify-self: start;
-  gap: 12px;
-  font-family: var(--serif);
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.2;
-  text-decoration: none;
-}
-
 .monogram {
   display: grid;
-  flex: none;
   width: 44px;
   height: 44px;
   place-items: center;
   border: 1px solid var(--ink);
   border-radius: 50%;
+  font-family: var(--serif);
+  font-size: 17px;
+  text-decoration: none;
 }
 
 nav {
@@ -121,14 +111,23 @@ nav a:focus-visible,
 }
 
 .hero h1 {
-  margin: 0 0 24px;
+  margin: 0;
   font-family: var(--serif);
-  font-size: clamp(50px, 5.45vw, 84px);
+  font-size: clamp(60px, 8vw, 112px);
   font-weight: 600;
-  letter-spacing: -0.05em;
-  line-height: 0.98;
+  letter-spacing: -0.065em;
+  line-height: 0.84;
+}
+
+.hero h2 {
+  max-width: 610px;
+  margin: 34px 0 20px;
+  font-family: var(--serif);
+  font-size: clamp(25px, 3vw, 40px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.1;
   text-wrap: balance;
-  overflow-wrap: anywhere;
 }
 
 .hero-intro {
@@ -251,8 +250,9 @@ nav a:focus-visible,
 
 .styling-path {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(240px, 36vw, 440px);
+  grid-template-columns: minmax(0, 650px) clamp(240px, 36vw, 440px);
   align-items: center;
+  justify-content: center;
   gap: clamp(24px, 4vw, 52px);
 }
 
@@ -430,6 +430,10 @@ a:focus-visible {
     gap: 50px;
   }
 
+  .hero h1 {
+    font-size: clamp(58px, 10vw, 86px);
+  }
+
   .about {
     grid-template-columns: 1fr;
   }
@@ -466,7 +470,11 @@ a:focus-visible {
   }
 
   .hero h1 {
-    font-size: clamp(40px, 8.2vw, 62px);
+    font-size: clamp(50px, calc(30vw - 40px), 82px);
+  }
+
+  [lang="uk"] .hero h1 {
+    font-size: clamp(45px, 16.5vw, 82px);
   }
 
   .hero-art {

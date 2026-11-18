@@ -17,7 +17,6 @@ const translations = {
     metaDescription:
       "Авторські концепції меблів та освітлення, візуалізація предметів в інтер’єрі й підготовка житла до оренди.",
     languageLabel: "Оберіть мову",
-    name: "Олена Григор’єва",
     homeLabel: "Олена Григор’єва - головна сторінка",
     nav: {
       work: "Роботи",
@@ -28,6 +27,8 @@ const translations = {
     },
     hero: {
       eyebrow: "Меблі / Предмети / Візуальний напрям",
+      firstName: "Олена",
+      lastName: "Григор’єва",
       role: "Концепт-дизайнерка меблів і стилістка інтер’єру",
       intro:
         "Створюю авторські концепції меблів та освітлення, показую предмети в інтер’єрі й оновлюю житлові простори за допомогою меблів, світла та декору.",
@@ -105,7 +106,6 @@ const translations = {
     metaDescription:
       "Original furniture and lighting concepts, product visualization in interiors, and residential styling.",
     languageLabel: "Choose language",
-    name: "Olena Hryhorieva",
     homeLabel: "Olena Hryhorieva - home",
     nav: {
       work: "Work",
@@ -116,6 +116,8 @@ const translations = {
     },
     hero: {
       eyebrow: "Furniture / Objects / Visual Direction",
+      firstName: "Olena",
+      lastName: "Hryhorieva",
       role: "Furniture Concept Designer and Interior Stylist",
       intro:
         "I design furniture and lighting concepts, visualize products in interiors, and refresh rooms through furniture, lighting and decor.",
@@ -228,9 +230,8 @@ function App() {
   return (
     <>
       <header className="site-header">
-        <a className="site-brand" href="#top" aria-label={t.homeLabel}>
-          <span className="monogram" aria-hidden="true">OH</span>
-          <span>{t.name}</span>
+        <a className="monogram" href="#top" aria-label={t.homeLabel}>
+          OH
         </a>
         <div className="header-controls">
           <nav aria-label={language === "uk" ? "Основна навігація" : "Primary navigation"}>
@@ -263,7 +264,12 @@ function App() {
         <section className="hero section-shell" aria-labelledby="hero-title">
           <div className="hero-copy">
             <p className="eyebrow">{t.hero.eyebrow}</p>
-            <h1 id="hero-title">{t.hero.role}</h1>
+            <h1 id="hero-title">
+              {t.hero.firstName}
+              <br />
+              {t.hero.lastName}
+            </h1>
+            <h2>{t.hero.role}</h2>
             <p className="hero-intro">{t.hero.intro}</p>
             <div className="hero-actions">
               <a className="button button-dark" href="#home-decor">

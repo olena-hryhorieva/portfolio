@@ -52,11 +52,11 @@
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 520px) {
   .site-header {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 10px 14px;
+    row-gap: 10px;
     padding-block: 10px;
   }
 
