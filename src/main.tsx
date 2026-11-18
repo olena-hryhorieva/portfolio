@@ -17,6 +17,7 @@ const translations = {
     metaDescription:
       "Авторські концепції меблів та освітлення, візуалізація предметів в інтер’єрі й підготовка житла до оренди.",
     languageLabel: "Оберіть мову",
+    name: "Олена Григор’єва",
     homeLabel: "Олена Григор’єва - головна сторінка",
     nav: {
       work: "Роботи",
@@ -27,8 +28,6 @@ const translations = {
     },
     hero: {
       eyebrow: "Меблі / Предмети / Візуальний напрям",
-      firstName: "Олена",
-      lastName: "Григор’єва",
       role: "Концепт-дизайнерка меблів і стилістка інтер’єру",
       intro:
         "Створюю авторські концепції меблів та освітлення, показую предмети в інтер’єрі й оновлюю житлові простори за допомогою меблів, світла та декору.",
@@ -42,7 +41,7 @@ const translations = {
       stylingTitle: "Мода, стилістика образів",
       stylingDescription:
         "Добірка редакційних зйомок, персональних образів, візуальних перевтілень і роботи для телебачення. Досвід із силуетом, кольором і фактурою поглиблює мій підхід до матеріалів, предметів та атмосфери інтер’єру.",
-      stylingCoverAlt: "Обкладинка журналу Pink із ONUKA",
+      stylingPhotoAlt: "Образ у стилі ретро: чорна сукня та довгі рукавички на кам’яних сходах",
       openStylingPdf: "Переглянути PDF",
       downloadStylingPdf: "Завантажити PDF",
     },
@@ -106,6 +105,7 @@ const translations = {
     metaDescription:
       "Original furniture and lighting concepts, product visualization in interiors, and residential styling.",
     languageLabel: "Choose language",
+    name: "Olena Hryhorieva",
     homeLabel: "Olena Hryhorieva - home",
     nav: {
       work: "Work",
@@ -116,8 +116,6 @@ const translations = {
     },
     hero: {
       eyebrow: "Furniture / Objects / Visual Direction",
-      firstName: "Olena",
-      lastName: "Hryhorieva",
       role: "Furniture Concept Designer and Interior Stylist",
       intro:
         "I design furniture and lighting concepts, visualize products in interiors, and refresh rooms through furniture, lighting and decor.",
@@ -131,7 +129,7 @@ const translations = {
       stylingTitle: "Fashion Styling & Visual Direction",
       stylingDescription:
         "A selection of editorial shoots, personal styling, visual transformations, and work for television. Experience with silhouette, color, and texture continues to inform my approach to materials, objects, and interior atmosphere.",
-      stylingCoverAlt: "Pink magazine cover featuring ONUKA",
+      stylingPhotoAlt: "Retro fashion portrait in a black dress and long gloves on stone steps",
       openStylingPdf: "View PDF",
       downloadStylingPdf: "Download PDF",
     },
@@ -230,8 +228,9 @@ function App() {
   return (
     <>
       <header className="site-header">
-        <a className="monogram" href="#top" aria-label={t.homeLabel}>
-          OH
+        <a className="site-brand" href="#top" aria-label={t.homeLabel}>
+          <span className="monogram" aria-hidden="true">OH</span>
+          <span>{t.name}</span>
         </a>
         <div className="header-controls">
           <nav aria-label={language === "uk" ? "Основна навігація" : "Primary navigation"}>
@@ -264,12 +263,7 @@ function App() {
         <section className="hero section-shell" aria-labelledby="hero-title">
           <div className="hero-copy">
             <p className="eyebrow">{t.hero.eyebrow}</p>
-            <h1 id="hero-title">
-              {t.hero.firstName}
-              <br />
-              {t.hero.lastName}
-            </h1>
-            <h2>{t.hero.role}</h2>
+            <h1 id="hero-title">{t.hero.role}</h1>
             <p className="hero-intro">{t.hero.intro}</p>
             <div className="hero-actions">
               <a className="button button-dark" href="#home-decor">
@@ -318,11 +312,11 @@ function App() {
               </div>
             </div>
             <img
-              className="styling-cover"
-              src={asset("images/selected/pink-magazine-cover.jpg")}
-              alt={t.portfolio.stylingCoverAlt}
-              width={640}
-              height={816}
+              className="styling-photo"
+              src={asset("images/selected/fashion-styling-editorial.jpg")}
+              alt={t.portfolio.stylingPhotoAlt}
+              width={1074}
+              height={1148}
               loading="lazy"
             />
           </div>

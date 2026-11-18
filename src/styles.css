@@ -61,16 +61,26 @@ img {
   backdrop-filter: blur(16px);
 }
 
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 12px;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
 .monogram {
   display: grid;
+  flex: none;
   width: 44px;
   height: 44px;
   place-items: center;
   border: 1px solid var(--ink);
   border-radius: 50%;
-  font-family: var(--serif);
-  font-size: 17px;
-  text-decoration: none;
 }
 
 nav {
@@ -111,23 +121,14 @@ nav a:focus-visible,
 }
 
 .hero h1 {
-  margin: 0;
+  margin: 0 0 24px;
   font-family: var(--serif);
-  font-size: clamp(60px, 8vw, 112px);
+  font-size: clamp(50px, 5.45vw, 84px);
   font-weight: 600;
-  letter-spacing: -0.065em;
-  line-height: 0.84;
-}
-
-.hero h2 {
-  max-width: 610px;
-  margin: 34px 0 20px;
-  font-family: var(--serif);
-  font-size: clamp(25px, 3vw, 40px);
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.1;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .hero-intro {
@@ -250,9 +251,15 @@ nav a:focus-visible,
 
 .styling-path {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, clamp(190px, 28vw, 320px));
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(28px, 6vw, 90px);
+  gap: clamp(24px, 4vw, 52px);
+}
+
+.styling-copy {
+  align-self: stretch;
+  display: grid;
+  align-content: center;
   padding: clamp(24px, 4vw, 54px);
   background: var(--lilac);
   color: #2f2732;
@@ -280,7 +287,7 @@ nav a:focus-visible,
   margin-top: 30px;
 }
 
-.styling-cover {
+.styling-photo {
   display: block;
   width: 100%;
   height: auto;
@@ -423,10 +430,6 @@ a:focus-visible {
     gap: 50px;
   }
 
-  .hero h1 {
-    font-size: clamp(58px, 10vw, 86px);
-  }
-
   .about {
     grid-template-columns: 1fr;
   }
@@ -463,11 +466,7 @@ a:focus-visible {
   }
 
   .hero h1 {
-    font-size: clamp(58px, 20vw, 82px);
-  }
-
-  [lang="uk"] .hero h1 {
-    font-size: clamp(45px, 16.5vw, 82px);
+    font-size: clamp(40px, 8.2vw, 62px);
   }
 
   .hero-art {
@@ -491,9 +490,9 @@ a:focus-visible {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .styling-cover {
+  .styling-photo {
     justify-self: center;
-    width: min(100%, 300px);
+    width: min(100%, 420px);
   }
 
   .method-grid {
