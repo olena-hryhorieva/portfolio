@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type TouchEvent } from "react";
 import "./selected-work.css";
 
 const images = "images/selected/";
@@ -24,16 +24,19 @@ const labels = {
     interiors: "Interior styling",
     apartment: "Berezniaky Rental Apartment",
     apartmentDescription: "I prepared this Kyiv apartment for rental in 2019 by refreshing the existing furniture with textiles, lighting and decor. I had designed the kitchen during an earlier renovation. These are archival photos of the actual apartment.",
+    rentalResult: "Rented on the second viewing at 20% above market rent.",
     before: "Before styling",
+    cleared: "Cleared room before staging",
     after: "Ready for rental",
     kitchen: "Completed kitchen",
     kitchenDrawing: "Kitchen cabinet drawing with dimensions",
     diningNook: "Dining nook set for two",
     candlelight: "Candlelight detail",
-    decorDetail: "Candle and framed artwork",
     enlarge: "Enlarge image",
     viewer: "Image preview",
     close: "Close image",
+    previous: "Previous image",
+    next: "Next image",
     videos: "Room makeover videos",
     videosDescription: "Two short videos show different ways to refresh the same bedroom. Both use AI-assisted concept images to illustrate the proposed changes.",
     olive: "Warm Olive Bedroom",
@@ -62,16 +65,19 @@ const labels = {
     interiors: "Стилістика інтер’єру",
     apartment: "Квартира під оренду на Березняках",
     apartmentDescription: "У 2019 році я підготувала київську квартиру до оренди й освіжила простір текстилем, світлом і декором. Кухню спроєктувала під час попереднього ремонту. Тут показані архівні фото реальної квартири.",
+    rentalResult: "Квартиру здали після другого перегляду за ціною на 20% вищою за ринкову.",
     before: "До оновлення",
+    cleared: "Кімната без декору перед підготовкою до оренди",
     after: "Готова до оренди",
     kitchen: "Реалізована кухня",
     kitchenDrawing: "Креслення кухонних меблів із розмірами",
     diningNook: "Обідній куточок із сервіруванням на двох",
     candlelight: "Свічки крупним планом",
-    decorDetail: "Свічка та графіка в рамі",
     enlarge: "Збільшити зображення",
     viewer: "Перегляд зображення",
     close: "Закрити зображення",
+    previous: "Попереднє зображення",
+    next: "Наступне зображення",
     videos: "Відео про перетворення кімнати",
     videosDescription: "Два короткі відео показують, як можна по-різному оновити одну спальню. Запропоновані зміни показані на концептуальних візуалізаціях, створених за допомогою ШІ.",
     olive: "Спальня в теплих оливкових тонах",
@@ -83,12 +89,13 @@ const labels = {
 } as const;
 
 type Photo = { file: string; alt: string; caption: string };
+type GalleryPosition = { photos: readonly Photo[]; index: number };
 
 function GalleryPhoto({ photo, url, buttonLabel, onOpen, className }: {
   photo: Photo;
   url: string;
   buttonLabel: string;
-  onOpen: (photo: Photo, button: HTMLButtonElement) => void;
+  onOpen: (button: HTMLButtonElement) => void;
   className?: string;
 }) {
   return (
@@ -98,10 +105,10 @@ function GalleryPhoto({ photo, url, buttonLabel, onOpen, className }: {
         type="button"
         aria-label={`${buttonLabel} — ${photo.alt}`}
         aria-haspopup="dialog"
-        onClick={(event) => onOpen(photo, event.currentTarget)}
+        onClick={(event) => onOpen(event.currentTarget)}
       >
         <img src={url} alt={photo.alt} loading="lazy" />
-        <span className="gallery-photo-icon" aria-hidden="true">+</span>
+        <span className="gallery-photo-icon" aria-hidden="true" />
       </button>
       <figcaption>{photo.caption}</figcaption>
     </figure>
@@ -115,18 +122,60 @@ export function SelectedWork({ language, asset }: {
   const t = labels[language];
   const viewer = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const [position, setPosition] = useState<GalleryPosition | null>(null);
+  const selectedPhoto = position?.photos[position.index];
   const photoUrl = (photo: Photo) => asset(`${images}${photo.file}.webp`);
 
-  function openPhoto(photo: Photo, button: HTMLButtonElement) {
+  function openPhoto(photos: readonly Photo[], index: number, button: HTMLButtonElement) {
     opener.current = button;
-    setSelectedPhoto(photo);
+    setPosition({ photos, index });
     viewer.current?.showModal();
   }
 
   function resetViewer() {
-    setSelectedPhoto(null);
+    setPosition(null);
+    touchStart.current = null;
     opener.current?.focus({ preventScroll: true });
+  }
+
+  function changePhoto(direction: -1 | 1) {
+    setPosition((current) => {
+      if (!current) return null;
+      const count = current.photos.length;
+      return { ...current, index: (current.index + direction + count) % count };
+    });
+  }
+
+  function startSwipe(event: TouchEvent<HTMLImageElement>) {
+    const touch = event.touches[0];
+    touchStart.current = event.touches.length === 1 ? { x: touch.clientX, y: touch.clientY } : null;
+  }
+
+  function endSwipe(event: TouchEvent<HTMLImageElement>) {
+    const start = touchStart.current;
+    touchStart.current = null;
+    const end = event.changedTouches[0];
+    if (!start || !end) return;
+    const dx = end.clientX - start.x;
+    const dy = end.clientY - start.y;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) {
+      changePhoto(dx < 0 ? 1 : -1);
+    }
+  }
+
+  function renderPhoto(photos: readonly Photo[], index: number, className?: string) {
+    const photo = photos[index];
+    return (
+      <GalleryPhoto
+        key={photo.file}
+        className={className}
+        photo={photo}
+        url={photoUrl(photo)}
+        buttonLabel={t.enlarge}
+        onOpen={(button) => openPhoto(photos, index, button)}
+      />
+    );
   }
 
   const objects: { id: string; title: string; description: string; main: Photo; details: Photo[] }[] = [
@@ -150,15 +199,16 @@ export function SelectedWork({ language, asset }: {
   ];
   const rooms: Photo[] = [
     { file: "berezniaky-before", alt: t.before, caption: t.before },
+    { file: "berezniaky-cleared", alt: t.cleared, caption: t.cleared },
     { file: "berezniaky-after", alt: t.after, caption: t.after },
-    { file: "berezniaky-kitchen", alt: t.kitchen, caption: t.kitchen },
   ];
   const roomDetails: Photo[] = [
+    { file: "berezniaky-kitchen", alt: t.kitchen, caption: t.kitchen },
     { file: "berezniaky-kitchen-drawing", alt: t.kitchenDrawing, caption: t.kitchenDrawing },
     { file: "berezniaky-dining-nook", alt: t.diningNook, caption: t.diningNook },
     { file: "berezniaky-candlelight", alt: t.candlelight, caption: t.candlelight },
-    { file: "berezniaky-decor-detail", alt: t.decorDetail, caption: t.decorDetail },
   ];
+  const apartmentPhotos = [...rooms, ...roomDetails];
   const videos = [
     { file: "warm-olive-interior", title: t.olive, description: t.oliveDescription },
     { file: "low-budget-interior", title: t.budget, description: t.budgetDescription },
@@ -174,24 +224,19 @@ export function SelectedWork({ language, asset }: {
           </a>
         </div>
         <div className="object-gallery">
-          {objects.map((project) => (
-            <article className="object-card" key={project.id} id={project.id}>
-              <GalleryPhoto
-                className="object-cover"
-                photo={project.main}
-                url={photoUrl(project.main)}
-                buttonLabel={t.enlarge}
-                onOpen={openPhoto}
-              />
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="object-details">
-                {project.details.map((photo) => (
-                  <GalleryPhoto key={photo.file} photo={photo} url={photoUrl(photo)} buttonLabel={t.enlarge} onOpen={openPhoto} />
-                ))}
-              </div>
-            </article>
-          ))}
+          {objects.map((project) => {
+            const photos = [project.main, ...project.details];
+            return (
+              <article className="object-card" key={project.id} id={project.id}>
+                {renderPhoto(photos, 0, "object-cover")}
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="object-details">
+                  {project.details.map((_, index) => renderPhoto(photos, index + 1))}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -202,15 +247,12 @@ export function SelectedWork({ language, asset }: {
         <article className="room-case" id="berezniaky">
           <h3>{t.apartment}</h3>
           <p>{t.apartmentDescription}</p>
+          <p className="room-result">{t.rentalResult}</p>
           <div className="room-gallery">
-            {rooms.map((photo) => (
-              <GalleryPhoto key={photo.file} photo={photo} url={photoUrl(photo)} buttonLabel={t.enlarge} onOpen={openPhoto} />
-            ))}
+            {rooms.map((_, index) => renderPhoto(apartmentPhotos, index))}
           </div>
           <div className="room-detail-gallery">
-            {roomDetails.map((photo) => (
-              <GalleryPhoto key={photo.file} photo={photo} url={photoUrl(photo)} buttonLabel={t.enlarge} onOpen={openPhoto} />
-            ))}
+            {roomDetails.map((_, index) => renderPhoto(apartmentPhotos, rooms.length + index))}
           </div>
         </article>
         <div className="video-section" id="makeover-videos">
@@ -243,17 +285,37 @@ export function SelectedWork({ language, asset }: {
         className="image-viewer"
         aria-label={t.viewer}
         onClose={resetViewer}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+            event.preventDefault();
+            changePhoto(event.key === "ArrowLeft" ? -1 : 1);
+          }
+        }}
         onPointerDown={(event) => {
           if (event.target === event.currentTarget) event.currentTarget.close();
         }}
       >
-        <form method="dialog" className="image-viewer-controls">
-          <button type="submit" aria-label={t.close}>×</button>
-        </form>
-        {selectedPhoto && (
+        <div className="image-viewer-controls">
+          <button className="image-viewer-button" type="button" aria-label={t.close} onClick={() => viewer.current?.close()}>×</button>
+        </div>
+        {position && selectedPhoto && (
           <figure>
-            <img src={photoUrl(selectedPhoto)} alt={selectedPhoto.alt} />
-            <figcaption>{selectedPhoto.caption}</figcaption>
+            <img
+              src={photoUrl(selectedPhoto)}
+              alt={selectedPhoto.alt}
+              draggable={false}
+              onTouchStart={startSwipe}
+              onTouchEnd={endSwipe}
+              onTouchCancel={() => { touchStart.current = null; }}
+            />
+            <figcaption className="image-viewer-navigation">
+              <button className="image-viewer-button" type="button" aria-label={t.previous} onClick={() => changePhoto(-1)}>←</button>
+              <span className="image-viewer-caption" aria-live="polite">
+                {selectedPhoto.caption}
+                <small>{position.index + 1} / {position.photos.length}</small>
+              </span>
+              <button className="image-viewer-button" type="button" aria-label={t.next} onClick={() => changePhoto(1)}>→</button>
+            </figcaption>
           </figure>
         )}
       </dialog>

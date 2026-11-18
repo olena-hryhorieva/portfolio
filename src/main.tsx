@@ -20,6 +20,7 @@ const translations = {
     homeLabel: "Олена Григор’єва - головна сторінка",
     nav: {
       work: "Роботи",
+      portfolio: "Портфоліо",
       approach: "Метод",
       interiors: "Інтер’єри",
       about: "Про мене",
@@ -117,6 +118,7 @@ const translations = {
     homeLabel: "Olena Hryhorieva - home",
     nav: {
       work: "Work",
+      portfolio: "Portfolio",
       approach: "Approach",
       interiors: "Interiors",
       about: "About",
@@ -253,6 +255,7 @@ function App() {
           <nav aria-label={language === "uk" ? "Основна навігація" : "Primary navigation"}>
             <a href="#home-decor">{t.nav.work}</a>
             <a href="#interiors">{t.nav.interiors}</a>
+            <a href="#portfolio">{t.nav.portfolio}</a>
             <a className="approach-link" href="#approach">{t.nav.approach}</a>
             <a href="#about">{t.nav.about}</a>
             {!workOnly && <a href="#contact">{t.nav.contact}</a>}

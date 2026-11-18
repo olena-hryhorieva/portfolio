@@ -52,7 +52,7 @@
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 520px) {
   .site-header {
     display: grid;
     grid-template-columns: 1fr auto;
