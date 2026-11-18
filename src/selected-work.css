@@ -1,0 +1,148 @@
+.selected-work {
+  padding-block: clamp(64px, 8vw, 108px);
+  border-top: 1px solid var(--line);
+}
+
+#home-decor,
+#interiors,
+#berezniaky,
+#makeover-videos,
+.object-card {
+  scroll-margin-top: 96px;
+}
+
+.selected-work-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 34px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: clamp(30px, 5vw, 54px);
+}
+
+.selected-work h2,
+.selected-work h3,
+.video-card h4 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.13;
+  text-wrap: balance;
+}
+
+.selected-work h2 {
+  font-size: clamp(38px, 6vw, 72px);
+  letter-spacing: -0.06em;
+}
+
+.selected-work h3 {
+  font-size: clamp(25px, 3vw, 37px);
+  letter-spacing: -0.035em;
+}
+
+.selected-work p {
+  max-width: 680px;
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
+.selected-work figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.selected-work figcaption {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.object-gallery,
+.room-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 38px);
+}
+
+.object-card h3 {
+  margin-top: 17px;
+}
+
+.object-cover img,
+.room-gallery img,
+.object-details img {
+  width: 100%;
+  background: #eae1d4;
+}
+
+.object-cover img {
+  aspect-ratio: 1.2;
+  object-fit: contain;
+}
+
+.object-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 21px;
+}
+
+.object-details img {
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.object-details a {
+  display: block;
+}
+
+.room-gallery {
+  margin-top: 26px;
+}
+
+.room-gallery img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.video-section {
+  margin-top: clamp(48px, 7vw, 84px);
+}
+
+.video-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 300px));
+  gap: clamp(25px, 5vw, 64px);
+  margin-top: 24px;
+}
+
+.video-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: #28231f;
+  object-fit: contain;
+}
+
+.video-card h4 {
+  margin-top: 16px;
+  font-size: clamp(21px, 3vw, 26px);
+}
+
+@media (max-width: 700px) {
+  .object-gallery,
+  .room-gallery {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .object-details {
+    max-width: 390px;
+  }
+}
+
+@media (max-width: 430px) {
+  .video-gallery {
+    grid-template-columns: minmax(0, 300px);
+  }
+}

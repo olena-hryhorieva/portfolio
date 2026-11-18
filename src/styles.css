@@ -470,10 +470,10 @@ a:focus-visible {
   }
 
   nav {
-    gap: 16px;
+    gap: clamp(8px, 3vw, 16px);
   }
 
-  nav a:nth-child(2) {
+  nav .approach-link {
     display: none;
   }
 

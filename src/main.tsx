@@ -2,22 +2,26 @@ import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 import "./language.css";
+import { SelectedWork } from "./selected-work";
 
 type Language = "uk" | "en";
 
 const base = import.meta.env.BASE_URL;
 const asset = (path: string) => `${base}${path}`;
+const params = new URLSearchParams(window.location.search);
+const workOnly = params.get("view") === "work";
 
 const translations = {
   uk: {
-    metaTitle: "Олена Григор’єва - концепт-дизайнер меблів, предметів інтер’єру та побуту",
+    metaTitle: "Олена Григор’єва — дизайн меблів і стилістика інтер’єру",
     metaDescription:
-      "Олена Григор’єва - концепт-дизайнер меблів, предметів інтер’єру та побуту. Авторські концепції, 3D-опрацювання та реалізовані об’єкти.",
+      "Авторські концепції меблів та освітлення, візуалізація предметів в інтер’єрі й підготовка житла до оренди.",
     languageLabel: "Оберіть мову",
     homeLabel: "Олена Григор’єва - головна сторінка",
     nav: {
       work: "Роботи",
       approach: "Метод",
+      interiors: "Інтер’єри",
       about: "Про мене",
       contact: "Контакти",
     },
@@ -25,14 +29,14 @@ const translations = {
       eyebrow: "Меблі / Предмети / Візуальний напрям",
       firstName: "Олена",
       lastName: "Григор’єва",
-      role: "Концепт-дизайнер меблів, предметів інтер’єру та побуту",
+      role: "Концепт-дизайнерка меблів і стилістка інтер’єру",
       intro:
-        "Досліджую меблі й повсякденні предмети через форму, силует, ергономіку та культурні образи - від ескізів від руки до 3D-опрацювань і окремих реалізованих об’єктів.",
+        "Створюю авторські концепції меблів та освітлення, показую предмети в інтер’єрі й оновлюю житлові простори за допомогою меблів, світла та декору.",
       primaryCta: "Переглянути вибрані роботи",
       secondaryCta: "Про мою практику",
-      figureTitle: "01 / Скульптурне крісло",
-      figureStatus: "Опрацювання концепції",
-      figureAlt: "Скульптурне крісло - 3D-опрацювання концепції Олени Григор’євої у Blender",
+      figureTitle: "Настільна лампа з мереживним абажуром",
+      figureStatus: "Авторська концепція",
+      figureAlt: "Концепт настільної лампи з мереживним абажуром у вітальні",
     },
     portfolio: {
       eyebrow: "Два творчі напрями",
@@ -81,8 +85,8 @@ const translations = {
       title: "Візуальне мислення, спрямоване до матеріальної форми.",
       paragraphs: [
         "Мої ідеї часто починаються зі спостереження, культурного образу або форми, зафіксованої швидким ескізом. Далі я розвиваю концепцію через сценарій використання, силует, ергономіку й можливі матеріали.",
-        "Моє поточне портфоліо поєднує ескізи меблів і предметів від руки, 3D-опрацювання у Blender та кілька реалізованих рішень. Досвід у стилістиці загострив моє відчуття пропорцій, фактури, кольору та візуальної оповіді.",
-        "Після переосмислення професійного шляху я свідомо зосередилася на дизайні меблів і предметів - напрямі, який давно був частиною мого візуального мислення та творчої практики. Для мене це не початок творчого шляху, а новий професійний фокус для вже сформованої дизайнерської оптики. Продовжую поглиблювати навички у дизайні меблів і 3D, спираючись на досвід у стилістиці, композиції, роботі з кольором, матеріалами та простором.",
+        "У своїх роботах я поєдную ручні ескізи, 3D-опрацювання у Blender та візуалізації за допомогою ШІ. Мені важливо показати, як форма, світло й матеріал предмета працюють у конкретному інтер’єрі.",
+        "Досвід у стилістиці й консультуванні щодо меблів у США навчив мене працювати з кольором, пропорціями та фактурою. В інтер’єрних проєктах я підбираю меблі, світло й декор, а у відео показую, як окремі зміни впливають на кімнату.",
       ],
       skillsLabel: "Основні навички та інструменти",
       skills: [
@@ -97,7 +101,7 @@ const translations = {
       eyebrow: "Контакти",
       title: "Від ідеї до продуманого предметного рішення.",
       description:
-        "Відкрита до різних форматів співпраці у сфері концептуального дизайну меблів і предметів: проєктної роботи, участі в команді та творчих партнерств.",
+        "Відкрита до співпраці з меблевими брендами, інтер’єрними студіями та приватними клієнтами.",
     },
     footer: {
       copyright: "© 2026 Олена Григор’єва",
@@ -106,14 +110,15 @@ const translations = {
     },
   },
   en: {
-    metaTitle: "Olena Hryhorieva - Concept Designer for Furniture, Interior & Everyday Objects",
+    metaTitle: "Olena Hryhorieva — Furniture Design and Interior Styling",
     metaDescription:
-      "Olena Hryhorieva - concept designer for furniture, interior and everyday objects. Selected concepts, 3D development, and implemented objects.",
+      "Original furniture and lighting concepts, product visualization in interiors, and residential styling.",
     languageLabel: "Choose language",
     homeLabel: "Olena Hryhorieva - home",
     nav: {
       work: "Work",
       approach: "Approach",
+      interiors: "Interiors",
       about: "About",
       contact: "Contact",
     },
@@ -121,14 +126,14 @@ const translations = {
       eyebrow: "Furniture / Objects / Visual Direction",
       firstName: "Olena",
       lastName: "Hryhorieva",
-      role: "Concept Designer for Furniture, Interior & Everyday Objects",
+      role: "Furniture Concept Designer and Interior Stylist",
       intro:
-        "I explore furniture and everyday objects through form, silhouette, ergonomics, and cultural research - from hand-drawn concepts to 3D development and selected implemented pieces.",
+        "I design furniture and lighting concepts, visualize products in interiors, and refresh rooms through furniture, lighting and decor.",
       primaryCta: "View selected work",
       secondaryCta: "About my practice",
-      figureTitle: "01 / Sculptural Armchair",
-      figureStatus: "Concept development",
-      figureAlt: "Sculptural armchair - 3D concept development by Olena Hryhorieva in Blender",
+      figureTitle: "Lace Shade Table Lamp",
+      figureStatus: "Original concept",
+      figureAlt: "Original lace shade table lamp concept in a living room",
     },
     portfolio: {
       eyebrow: "Two creative practices",
@@ -177,8 +182,8 @@ const translations = {
       title: "A visual eye moving toward tangible form.",
       paragraphs: [
         "My ideas often begin with an observation, a cultural reference, or a form captured in a quick sketch. I then develop the concept through its intended use, silhouette, ergonomics, and possible materials.",
-        "My current portfolio combines hand-drawn furniture and object concepts, 3D development in Blender, and several implemented solutions. A background in styling has strengthened my sensitivity to proportion, texture, color, and visual storytelling.",
-        "After reassessing my professional direction, I made a deliberate decision to focus on furniture and object design - a field that has long been part of my visual thinking and creative practice. This is not the beginning of my creative path, but a new professional focus for an already established design perspective. I continue to deepen my furniture design and 3D practice, drawing on experience in styling, composition, color, materials, and spatial thinking.",
+        "My work combines hand sketches, concept modeling in Blender, and AI-assisted visualization. I use standalone images and room scenes to study how a product’s proportions, materials and finishes read in context.",
+        "My background in styling and U.S. furniture consulting informs how I choose color, materials and proportions. For room projects, I select furniture, lighting and decor, and use short videos to show how those choices change a space.",
       ],
       skillsLabel: "Core strengths and tools",
       skills: [
@@ -193,7 +198,7 @@ const translations = {
       eyebrow: "Contact",
       title: "From an idea to a thoughtful object.",
       description:
-        "I am open to different forms of collaboration in furniture and object concept design, including project-based work, team participation, and creative partnerships.",
+        "I work with furniture and home decor brands, interior design teams, and private clients.",
     },
     footer: {
       copyright: "© 2026 Olena Hryhorieva",
@@ -204,6 +209,8 @@ const translations = {
 } as const;
 
 function getInitialLanguage(): Language {
+  const requested = params.get("lang");
+  if (requested === "en" || requested === "uk") return requested;
   try {
     const savedLanguage = window.localStorage.getItem("olena-portfolio-language");
     return savedLanguage === "en" ? "en" : "uk";
@@ -219,6 +226,10 @@ function Arrow({ down = false }: { down?: boolean }) {
 function App() {
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const t = translations[language];
+  useEffect(() => {
+    const anchor = window.location.hash.slice(1);
+    if (anchor) document.getElementById(anchor)?.scrollIntoView({ behavior: "instant" });
+  }, []);
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = t.metaTitle;
@@ -240,10 +251,11 @@ function App() {
         </a>
         <div className="header-controls">
           <nav aria-label={language === "uk" ? "Основна навігація" : "Primary navigation"}>
-            <a href="#portfolio">{t.nav.work}</a>
-            <a href="#approach">{t.nav.approach}</a>
+            <a href="#home-decor">{t.nav.work}</a>
+            <a href="#interiors">{t.nav.interiors}</a>
+            <a className="approach-link" href="#approach">{t.nav.approach}</a>
             <a href="#about">{t.nav.about}</a>
-            <a href="#contact">{t.nav.contact}</a>
+            {!workOnly && <a href="#contact">{t.nav.contact}</a>}
           </nav>
           <div className="language-switch" role="group" aria-label={t.languageLabel}>
             <button
@@ -276,7 +288,7 @@ function App() {
             <h2>{t.hero.role}</h2>
             <p className="hero-intro">{t.hero.intro}</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="#portfolio">
+              <a className="button button-dark" href="#home-decor">
                 {t.hero.primaryCta} <Arrow down />
               </a>
               <a className="text-link" href="#about">
@@ -287,7 +299,7 @@ function App() {
 
           <figure className="hero-art">
             <div className="hero-frame">
-              <img src={asset("images/sculptural-armchair.jpg")} alt={t.hero.figureAlt} />
+              <img src={asset("images/selected/table-lamp-room.webp")} alt={t.hero.figureAlt} />
             </div>
             <figcaption>
               <span>{t.hero.figureTitle}</span>
@@ -295,6 +307,8 @@ function App() {
             </figcaption>
           </figure>
         </section>
+
+        <SelectedWork language={language} asset={asset} />
 
         <section className="portfolio-paths section-shell" id="portfolio" aria-labelledby="portfolio-title">
           <div className="section-heading">
@@ -388,14 +402,14 @@ function App() {
           </div>
         </section>
 
-        <section className="contact section-shell" id="contact" aria-labelledby="contact-title">
+        {!workOnly && <section className="contact section-shell" id="contact" aria-labelledby="contact-title">
           <p className="eyebrow">{t.contact.eyebrow}</p>
           <h2 id="contact-title">{t.contact.title}</h2>
           <p>{t.contact.description}</p>
           <a className="email-link" href="mailto:elegorieva@gmail.com">
             elegorieva@gmail.com <Arrow />
           </a>
-        </section>
+        </section>}
       </main>
 
       <footer className="site-footer section-shell" lang={language}>
